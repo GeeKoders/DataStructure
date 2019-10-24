@@ -33,7 +33,9 @@ public class ArrayList {
 	
 	
 	public static void main(String[] args) {
-		List<String> list = new java.util.ArrayList<>(10) ; 
+		//List<String> list = new java.util.ArrayList<>(10) ; 
+		
+		List<String> list = new java.util.ArrayList<>();
 		
 		list.add("Adam") ;
 		list.add("Joe") ;
@@ -43,11 +45,19 @@ public class ArrayList {
 		list.add("Kevin") ;
 		list.add("Kevin") ;
 		
-		Object [] array =  list.toArray() ;
+		System.out.println(list.get(1)) ; //O(1)
 		
-		for(Object item: array){
+		System.out.println(list.isEmpty()) ;
+		
+		System.out.println(list.size()) ;
+
+		// Linked list is better than Arraay list when removing the item from list
+		
+		for(String item: list){
 			System.out.println(item) ;
 		}
+		
+		//This is for test
 		
 	}
 
