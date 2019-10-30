@@ -23,6 +23,12 @@ public class LinkedList <T> {
 		linkedList.insertH(8);
 		linkedList.insertH(9);
 		linkedList.print();
+		System.out.println("=========LinkedList remove head start===========") ;
+		linkedList.removeH();
+		linkedList.removeH();
+		linkedList.removeH();
+
+		linkedList.print();
 		
 		
 		
@@ -53,9 +59,6 @@ public class LinkedList <T> {
 		
 	}
 	
-	
-	
-	
 	//O(N)
 	public void insertT(T data){
 		
@@ -69,6 +72,19 @@ public class LinkedList <T> {
 			last = newNode ;
 		}
 	}
+	
+	//O(1)
+	public void removeH(){
+		
+		if(isEmpty()){
+			System.out.println("No nodes to remove.") ;
+		}else{
+			first = first.next ;
+		}
+		
+	}
+	
+	
 	
 	public boolean isEmpty(){
 		return first == null ;
