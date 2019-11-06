@@ -19,13 +19,16 @@ public class InsertLinkedList <T> {
 		System.out.println(InsertLinkedList.isEmpty()) ;
 		InsertLinkedList.print();
 		System.out.println("size:" + InsertLinkedList.size()) ;
-		System.out.println("=========InsertLinkedList insert head start===========") ;
+//		System.out.println("=========InsertLinkedList insert head start===========") ;
+//		
+//		InsertLinkedList.insertH(6);
+//		InsertLinkedList.insertH(8);
+//		InsertLinkedList.insertH(9);
+//		InsertLinkedList.print();
+//		System.out.println("size:" + InsertLinkedList.size()) ;
 		
-		InsertLinkedList.insertH(6);
-		InsertLinkedList.insertH(8);
-		InsertLinkedList.insertH(9);
+		InsertLinkedList.insertM(3, 6);
 		InsertLinkedList.print();
-		System.out.println("size:" + InsertLinkedList.size()) ;
 		
 	}
 	
@@ -79,6 +82,30 @@ public class InsertLinkedList <T> {
 			last = newNode ;
 		}
 	}
+	
+	public void insertM(T target, T data){
+		InsertNode <T> newNode = new InsertNode<>(data) ;
+		
+		if(isEmpty()){
+			first = newNode ; 
+			last = newNode ; 
+		}else{
+			
+			InsertNode <T> current = first ;
+			InsertNode <T> previous = first ;
+			while(current.data != target){
+				current = current.next ;
+			}
+			
+			newNode.next = current.next ;
+			current.next = newNode ;
+			
+			
+		}
+		
+		
+	}
+	
 	
 	public boolean isEmpty(){
 		return first == null ;
