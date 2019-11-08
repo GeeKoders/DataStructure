@@ -13,16 +13,24 @@ public class RemoveLinkedList<T> {
 		removeLinkedList.insertT(6);
 		removeLinkedList.insertT(8);
 		removeLinkedList.insertT(7);
+		removeLinkedList.insertT(9);
 
-		System.out.println("=========removeLinkedList remove head start===========");
+		System.out
+				.println("=========removeLinkedList remove head start===========");
 
 		removeLinkedList.removeH();
-		System.out.println("first removed:") ;
+		System.out.println("first removed:");
 		removeLinkedList.print();
-		
-		System.out.println("=========removeLinkedList remove tail start===========");
+
+		System.out
+				.println("=========removeLinkedList remove tail start===========");
 		removeLinkedList.removeT();
 		removeLinkedList.print();
+		System.out
+				.println("=========removeLinkedList remove middle start===========");
+		removeLinkedList.removeM(8);
+		removeLinkedList.print();
+
 	}
 
 	public void print() {
@@ -50,31 +58,56 @@ public class RemoveLinkedList<T> {
 	}
 
 	// O(1)
-	public void removeH(){
-		
-		RemoveNode<T> current = first ;
+	public void removeH() {
+
+		RemoveNode<T> current = first;
 
 		if (isEmpty()) {
 			System.out.println("No nodes to remove.");
 		} else {
-			first = first.next ;
+			first = first.next;
 		}
 
 	}
-	// O(N)
-	public void removeT(){
-		RemoveNode<T> current = first ;
-		RemoveNode<T> previous = first ;
 
+	public void removeM(T data) {
+
+		RemoveNode<T> current = first;
+		RemoveNode<T> previous = first;
 		if (isEmpty()) {
 			System.out.println("No nodes to remove.");
 		} else {
 			
-			while(current.next != null){
-				previous = current ;
-				current = current.next ;
+			try{
+				while (current.data != data) {
+					previous = current;
+					current = current.next;
+				}
+				previous.next = current.next;
+			}catch(Exception e){
+				System.out.println("Can't find target Node");
 			}
-			previous.next = current.next ;
+
+			
+
+		}
+
+	}
+
+	// O(N)
+	public void removeT() {
+		RemoveNode<T> current = first;
+		RemoveNode<T> previous = first;
+
+		if (isEmpty()) {
+			System.out.println("No nodes to remove.");
+		} else {
+
+			while (current.next != null) {
+				previous = current;
+				current = current.next;
+			}
+			previous.next = current.next;
 		}
 	}
 
