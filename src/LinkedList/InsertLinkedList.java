@@ -27,7 +27,9 @@ public class InsertLinkedList <T> {
 //		InsertLinkedList.print();
 //		System.out.println("size:" + InsertLinkedList.size()) ;
 		
-		InsertLinkedList.insertM(3, 6);
+		InsertLinkedList.insertM(3, 6); //5 2 3 6 4 1 
+		InsertLinkedList.insertM(6, 7); //5 2 3 6 7 4 1
+		InsertLinkedList.insertM(8, 9); //Can't find target node
 		InsertLinkedList.print();
 		
 	}
@@ -93,17 +95,17 @@ public class InsertLinkedList <T> {
 			
 			InsertNode <T> current = first ;
 			InsertNode <T> previous = first ;
-			while(current.data != target){
-				current = current.next ;
+			try{
+				while(current.data != target){
+					current = current.next ;
+				}
+				
+				newNode.next = current.next ;
+				current.next = newNode ;
+			}catch(Exception e){
+				System.out.println("Can't find target node");
 			}
-			
-			newNode.next = current.next ;
-			current.next = newNode ;
-			
-			
 		}
-		
-		
 	}
 	
 	
