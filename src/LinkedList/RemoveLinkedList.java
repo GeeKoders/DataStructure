@@ -69,7 +69,7 @@ public class RemoveLinkedList<T> {
 		}
 
 	}
-
+	//O(N)
 	public void removeM(T data) {
 
 		RemoveNode<T> current = first;

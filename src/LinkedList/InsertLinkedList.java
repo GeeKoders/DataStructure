@@ -84,7 +84,7 @@ public class InsertLinkedList <T> {
 			last = newNode ;
 		}
 	}
-	
+	//O(N)
 	public void insertM(T target, T data){
 		InsertNode <T> newNode = new InsertNode<>(data) ;
 		
