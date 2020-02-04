@@ -9,7 +9,7 @@ public class Test {
 //		reverse1() ;
 //		reverse2() ;
 //		anagramProblem() ;
-		
+		repeatedIntegerProblem() ;
 		
 		
 	}
@@ -74,6 +74,22 @@ public class Test {
 		String result = ((isAnagram == true)?"This is a anagram problem.":"This is not a anagram problem.") ;
 		
 		System.out.println(result);
+	}
+	
+	public static void repeatedIntegerProblem(){
+		
+		//{0, 4, 2, 4, 1, 1} is bug
+		//O(N)
+		int []num = {2, 3, 1, 2, 4, 3} ;
+		for(int i=0; i < num.length; i++){
+			
+			if(num[Math.abs(num[i])] > 0){
+				num[Math.abs(num[i])] = -num[Math.abs(num[i])] ;
+			}else{
+				System.out.println(Math.abs(num[i]) + " is repeated") ;
+			}
+			
+		}
 	}
 	
 }
