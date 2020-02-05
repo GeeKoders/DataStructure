@@ -9,7 +9,12 @@ public class ReservoirProblem {
 		int []num ={13, 65, 46, 11, 71, 50, 12, 5, 81, 97, 28, 74, 87, 68, 42, 31, 40, 37, 43, 25} ;
 		int k =5 ;
 		
-		
+		ReservoirProblem reservoir = new ReservoirProblem() ;
+		reservoir.solve(num, k);
+	
+	}
+	
+	public void solve(int []num, int k){
 		int [] reservoir = new int [k] ;
 		// 1. copy 
 		for(int i=0; i<reservoir.length; i++){
@@ -26,7 +31,6 @@ public class ReservoirProblem {
 		for(int i=0; i<reservoir.length; i++){
 			System.out.print(reservoir[i] + " ") ;
 		}
-		
 	}
 
 }
