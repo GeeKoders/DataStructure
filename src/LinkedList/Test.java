@@ -17,7 +17,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		Test test = new Test() ;
-//		insert
+//		insert node starts
 		
 //		test.insertH(1) ; 
 //		test.insertH(2) ;
@@ -38,21 +38,35 @@ public class Test {
 //		test.insertM(6, 3) ;
 //		test.print() ; // 1 2 3 6 4 5
 		
-		test.insertComplete("T", 1, -1);
-		test.insertComplete("T", 2, -1);
-		test.insertComplete("T", 3, -1);
-		test.insertComplete("T", 4, -1);
-		test.insertComplete("T", 5, -1);
-		test.insertComplete("M", 6, 3);
-		test.print();
-		
-		System.out.print("size:" + test.size()) ;
+//		test.insertComplete("T", 1, -1);
+//		test.insertComplete("T", 2, -1);
+//		test.insertComplete("T", 3, -1);
+//		test.insertComplete("T", 4, -1);
+//		test.insertComplete("T", 5, -1);
+//		test.insertComplete("M", 6, 3);
+//		test.print();
+//		
+//		System.out.print("size:" + test.size()) ;
 		
 //		System.out.println("==================================") ;		
 		
+// 		remove node starts
+		
+		test.insertT(1) ;
+		test.insertT(2) ;
+		test.insertT(3) ;
+		test.insertT(4) ;
+		test.insertT(5) ;
+		test.print();
+		System.out.println("==================================") ;	
+		test.removeH();
+		
+		test.print();
+		
+		
 	}
 	
-
+	//O(1)
 	public void insertH(int data){
 		
 		TestNode newNode = new TestNode(data) ;
@@ -67,6 +81,7 @@ public class Test {
 		
 	}
 	
+	//O(N)
 	public void insertT(int data){
 		
 		TestNode newNode =  new TestNode(data) ;
@@ -80,7 +95,7 @@ public class Test {
 		}
 		
 	}
-	
+	//O(N)
 	public void insertM(int data, int afterData){
 		
 		TestNode newNode = new TestNode(data) ;
@@ -133,12 +148,31 @@ public class Test {
 						current.next = newNode ;
 					}
 				}
-				
 			}
-			
+		}
+	}
+	//O(1)
+	public void removeH(){
+		
+		TestNode current = first ;
+		
+		if(isEmpty()){
+			System.out.println("No nodes to remove");
+		}else{
+				first = first.next ;
+				current = null ;
 		}
 		
 	}
+	
+	public void removeT(){
+		
+	}
+	
+	public void removeM(){
+		
+	}
+	
 	
 	
 	public void print(){
