@@ -60,12 +60,9 @@ public class Test {
 		test.print();
 		System.out.println("==================================");
 		// test.removeH() ;
-		test.removeT();
-		test.removeT();
-		test.removeT();
-		test.removeT();
-		test.removeT();
-		test.removeT();
+		// test.removeT();
+		// test.print();
+		test.removeM(3);
 		test.print();
 
 	}
@@ -182,10 +179,10 @@ public class Test {
 				first = null;
 				last = null;
 			} else {
-				
+
 				TestNode current = first;
 				TestNode previous = first;
-				
+
 				while (current != null) {
 
 					previous = current;
@@ -203,8 +200,41 @@ public class Test {
 
 	}
 
-	public void removeM() {
+	public void removeM(int target) {
 
+		if (isEmpty()) {
+			System.out.println("No nodes to remove");
+		} else {
+
+			TestNode current = first;
+			TestNode previous = first;
+			
+			boolean searchFlag = false ;
+
+			while (current!=null && current.data != target) {
+				searchFlag = true ;
+				previous = current;
+				current = current.next;
+				
+			}
+			
+			if(current == null){
+				System.out.println("It can't find target value:" + target);
+			}else{
+				if(current == first || current == last){
+					searchFlag = true ;
+					System.out.println("Remove the target value that it should be in the middle");
+				}else{
+					previous.next = current.next;
+				}
+				
+				if (!searchFlag) System.out.println("It can't find target value:" + target);
+			}
+			
+			
+			
+			
+		}
 	}
 
 	public void print() {
