@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Test {
 	
 	private TestNode first ;
@@ -34,8 +36,13 @@ public class Test {
 //		test.print() ; // 1 2 3 6 4 5
 		
 		
-		
-		
+		test.insertComplete("T", 1, -1);
+		test.insertComplete("T", 2, -1);
+		test.insertComplete("T", 3, -1);
+		test.insertComplete("T", 4, -1);
+		test.insertComplete("T", 5, -1);
+		test.insertComplete("M", 6, 3);
+		test.print();
 	}
 	
 
@@ -89,6 +96,40 @@ public class Test {
 		}
 		
 		if(!searchFlag) System.out.println("It can't find target value:" + afterData);
+		
+	}
+	
+	public void insertComplete(String type, int data, int target){
+		
+		TestNode newNode = new TestNode(data) ;
+		
+		if(isEmpty()){
+			first = newNode ;
+			last = newNode ;
+		}else{
+			if(target == -1){
+				if(StringUtils.equals("H", type)){ //Head
+					newNode.next = first ; 
+					first = newNode ;
+				}else if(StringUtils.equals("T", type)){ //Tail
+					last.next = newNode ;
+					last = newNode ;
+				}
+			}else{ //Middle
+
+				TestNode current = first ;
+				while(current.next!=null && current.data != target){
+					
+					current = current.next ;
+					if(current.data == target){
+						newNode.next = current.next ;
+						current.next = newNode ;
+					}
+				}
+				
+			}
+			
+		}
 		
 	}
 	
