@@ -12,13 +12,29 @@ public class Test {
 	private TestNode last ;
 	
 	public static void main(String[] args) {
-		
+//		 linkedListInserHead() ;
 		
 		
 	}
 	
+	public static void linkedListInserHead(){
+		
+		Scanner scanner = new Scanner(System.in) ;
+		
+		Test test = new Test() ;
+		
+		for(int i=0; i<5; i++){
+			
+			System.out.print("Please input your score:");
+			int score = scanner.nextInt() ;
+			test.insertH(score);
+		}
+		
+		test.print();
+	}
 	
-	public void insertH(String data){
+	
+	public void insertH(int data){
 		
 		TestNode newNode = new TestNode(data) ;
 		
@@ -26,11 +42,22 @@ public class Test {
 			first = newNode ;
 			last = newNode ;
 		}else{
+			newNode.next = first ;
 			first = newNode ;
-			last = newNode.next ;
 		}
 		
 	}
+	
+	
+	public void print(){
+		
+		TestNode current = first ;
+		while(current!=null){
+			System.out.println(current.data);
+			current = current.next ;
+		}
+	}
+	
 	
 	public boolean isEmpty(){
 		return first == null ;
@@ -40,11 +67,11 @@ public class Test {
 
 class TestNode{
 	
-	public String data;
+	public int data;
 	
 	public TestNode next ;
 	
-	public TestNode(String data){
+	public TestNode(int data){
 		this.data = data ;
 		this.next = null ;
 	}
