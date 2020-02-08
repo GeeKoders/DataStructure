@@ -6,21 +6,46 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Test {
-
+	
+	private TestNode first ;
+	
+	private TestNode last ;
+	
 	public static void main(String[] args) {
-		int num1, num2, num3;
-
-		Scanner sc = new Scanner(System.in);
-		System.out.println("請輸入三個數字:");
-
-		num1 = sc.nextInt();
-		num2 = sc.nextInt();
-		num3 = sc.nextInt();
-
-		System.out.println("您輸入第一個數字為：" + num1);
-		System.out.println("您輸入第二個數字為：" + num2);
-		System.out.println("您輸入第三個數字為：" + num3);
-
+		
+		
+		
 	}
+	
+	
+	public void insertH(String data){
+		
+		TestNode newNode = new TestNode(data) ;
+		
+		if(isEmpty()){
+			first = newNode ;
+			last = newNode ;
+		}else{
+			first = newNode ;
+			last = newNode.next ;
+		}
+		
+	}
+	
+	public boolean isEmpty(){
+		return first == null ;
+	}
+	
+}
 
+class TestNode{
+	
+	public String data;
+	
+	public TestNode next ;
+	
+	public TestNode(String data){
+		this.data = data ;
+		this.next = null ;
+	}
 }
