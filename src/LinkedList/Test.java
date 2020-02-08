@@ -13,6 +13,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 //		 linkedListInserHead() ;
+//		linkedListInsertTail() ;
 		
 		
 	}
@@ -33,6 +34,22 @@ public class Test {
 		test.print();
 	}
 	
+	public static void linkedListInsertTail(){
+		
+		Scanner scanner = new Scanner(System.in) ;
+		
+		Test test = new Test() ;
+		
+		for(int i=0; i<5; i++){
+			
+			System.out.print("Please input your score:");
+			int score = scanner.nextInt() ;
+			test.insertT(score);
+		}
+		
+		test.print();
+	}
+	
 	
 	public void insertH(int data){
 		
@@ -44,6 +61,20 @@ public class Test {
 		}else{
 			newNode.next = first ;
 			first = newNode ;
+		}
+		
+	}
+	
+	public void insertT(int data){
+		
+		TestNode newNode =  new TestNode(data) ;
+		
+		if(isEmpty()){
+			first = newNode ;
+			last = newNode ;
+		}else{
+			last.next = newNode ; 
+			last = newNode ;
 		}
 		
 	}
