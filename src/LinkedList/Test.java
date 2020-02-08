@@ -13,9 +13,12 @@ public class Test {
 	
 	private TestNode last ;
 	
+	private int count = 0 ;
+	
 	public static void main(String[] args) {
 		Test test = new Test() ;
-
+//		insert
+		
 //		test.insertH(1) ; 
 //		test.insertH(2) ;
 //		test.insertH(3) ; 
@@ -35,7 +38,6 @@ public class Test {
 //		test.insertM(6, 3) ;
 //		test.print() ; // 1 2 3 6 4 5
 		
-		
 		test.insertComplete("T", 1, -1);
 		test.insertComplete("T", 2, -1);
 		test.insertComplete("T", 3, -1);
@@ -43,6 +45,11 @@ public class Test {
 		test.insertComplete("T", 5, -1);
 		test.insertComplete("M", 6, 3);
 		test.print();
+		
+		System.out.print("size:" + test.size()) ;
+		
+//		System.out.println("==================================") ;		
+		
 	}
 	
 
@@ -146,6 +153,19 @@ public class Test {
 	
 	public boolean isEmpty(){
 		return first == null ;
+	}
+	
+	public int size(){
+		
+		TestNode current = first ;
+		
+		while(current != null){
+			count ++ ;
+			current = current.next ;
+		}
+		
+		return count ;
+		
 	}
 	
 }
