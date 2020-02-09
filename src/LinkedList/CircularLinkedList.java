@@ -16,14 +16,19 @@ public class CircularLinkedList {
 		// circularLinkedList.insertH(2);
 		// circularLinkedList.insertH(3);
 
-//		circularLinkedList.insertT(1);
-//		circularLinkedList.insertT(2);
-//		circularLinkedList.insertT(3);
-//		circularLinkedList.insertT(4);
-//		circularLinkedList.insertT(5);
+		circularLinkedList.insertT(1);
+		circularLinkedList.insertT(2);
+		circularLinkedList.insertT(3);
+		circularLinkedList.insertT(4);
+		circularLinkedList.insertT(5);
 //		circularLinkedList.insertM(6, 3);
 
+//		circularLinkedList.removeH();
+//		circularLinkedList.removeT();
+		circularLinkedList.removeM(1);
 		circularLinkedList.print();
+		
+		
 
 	}
 
@@ -51,7 +56,7 @@ public class CircularLinkedList {
 			count++;
 			current = current.next;
 
-			if (count > 7)
+			if (count > 9)
 				break; // avoid to infinite loop
 		}
 	}
@@ -102,6 +107,51 @@ public class CircularLinkedList {
 		current.next = newNode;
 		last.next = first;
 
+	}
+	
+	public void removeH(){
+		
+		if(isEmpty()){
+			System.out.println("No node to remove") ;
+		}else{
+			last.next = first.next ;
+			first = first.next ;
+		}
+	}
+	
+	public void removeT(){
+	
+		CircularNode current = first ;
+		CircularNode prev = first ;
+		
+		if(isEmpty()){
+			System.out.println("No node to remove") ;
+		}else{
+			
+			while(current!=last){
+				prev = current ;
+				current = current.next ;
+			}
+			prev.next = first ;
+			last = prev ;
+		}
+		
+	}
+	
+	public void removeM(int target){
+		CircularNode current = first ;
+		CircularNode prev = first ;
+		
+		if(isEmpty()){
+			System.out.println("No node to remove") ;
+		}else{
+			
+			while(current.data != target){
+				prev = current ;
+				current = current.next ;
+			}
+			prev.next = current.next ;
+		}
 	}
 
 }
