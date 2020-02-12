@@ -3,7 +3,7 @@ package Stack;
 
 import java.util.Scanner;
 
-public class Stack {
+public class StackApplication {
 	
 	private static int top = -1;
 	
@@ -12,7 +12,7 @@ public class Stack {
 
 	public static void main(String[] args) {
 
-		Stack stack = new Stack();
+		StackApplication stack = new StackApplication();
 		
 		Scanner sc = new Scanner(System.in);
 		
