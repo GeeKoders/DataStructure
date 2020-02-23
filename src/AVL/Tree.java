@@ -1,8 +1,8 @@
 package AVL;
 
-public interface Tree {
+public interface Tree<T> {
 
-	public void insert(int data) ; 
+	public void insert(T data) ; 
 	
 	public void traverse() ;
 	

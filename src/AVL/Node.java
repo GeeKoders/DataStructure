@@ -1,16 +1,16 @@
 package AVL;
 
-public class Node {
+public class Node<T> {
 
-	private int data ;
+	private T data ;
 	
-	private Node leftNode ;
+	private Node<T> leftNode ;
 	
-	private Node rightNode ;
+	private Node<T> rightNode ;
 	
 	private int height ;
 	
-	public Node(int data){
+	public Node(T data){
 		this.data = data ;
 	}
 	
@@ -19,11 +19,11 @@ public class Node {
 		return "" + this.data ;
 	}
 
-	public int getData() {
+	public T getData() {
 		return data;
 	}
 
-	public void setData(int data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 

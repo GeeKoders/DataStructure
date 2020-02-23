@@ -5,7 +5,7 @@ public class App {
 	public static void main(String[] args){
 		
 		
-		Tree avl = new AvlTree() ;
+		Tree <Integer> avl = new AvlTree<Integer>() ;
 		
 		avl.insert(10);
 		avl.insert(20);
