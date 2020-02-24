@@ -1,5 +1,7 @@
 package LinkedList ;
 
+import java.util.List;
+
 public class LinkedList <T> {
 
 	private Node <T> first ;
@@ -7,10 +9,10 @@ public class LinkedList <T> {
 	
 	
 	public static void main(String[] args) {
-		LinkedList <Person>linkedList = new LinkedList<>() ;
-		
-		linkedList.insertT(new Person("Paul", "M", 37));
-		linkedList.insertT(new Person("Alice", "F", 35));
+//		LinkedList <Person>linkedList = new LinkedList<>() ;
+//		
+//		linkedList.insertT(new Person("Paul", "M", 37));
+//		linkedList.insertT(new Person("Alice", "F", 35));
 		
 //		System.out.println("=========LinkedList insert tail start===========") ;
 //		System.out.println(linkedList.isEmpty()) ;
@@ -32,7 +34,25 @@ public class LinkedList <T> {
 //		linkedList.removeH();
 //		linkedList.removeH();
 
-		linkedList.print();
+//		linkedList.print();
+		
+		
+		List<Integer> list = new java.util.LinkedList<>() ;
+		
+		list.add(3) ;
+		list.add(10) ;
+		list.add(20) ;
+		
+		list.remove(0) ; // this is why we like linkedList !!!
+		System.out.println(list.get(1)) ; // not that fast
+		
+		System.out.println(list.size()) ;
+		System.out.println(list.isEmpty()) ;
+		
+		for(Integer i: list){
+			System.out.println(i) ;
+		}
+		
 		
 		
 		
