@@ -12,7 +12,7 @@ public class StackLinkedList<T extends Comparable> {
 	public static void main(String[] args) {
 		
 		StackLinkedList<Integer>stack = new StackLinkedList<Integer>() ;
-		
+		//push method means insert at the beginning
 		stack.push(1) ;
 		stack.push(2) ;
 		stack.push(3) ;
@@ -20,7 +20,7 @@ public class StackLinkedList<T extends Comparable> {
 		stack.push(5) ;
 		
 //		System.out.println(stack.count);
-		
+		//pop method means remove at the beginning
 		System.out.println(stack.pop()) ;
 		System.out.println(stack.pop()) ;
 		
