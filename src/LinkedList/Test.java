@@ -200,6 +200,7 @@ public class Test {
 
 	}
 
+	// O(N)
 	public void removeM(int target) {
 
 		if (isEmpty()) {
@@ -208,32 +209,31 @@ public class Test {
 
 			TestNode current = first;
 			TestNode previous = first;
-			
-			boolean searchFlag = false ;
 
-			while (current!=null && current.data != target) {
-				searchFlag = true ;
+			boolean searchFlag = false;
+
+			while (current != null && current.data != target) {
+				searchFlag = true;
 				previous = current;
 				current = current.next;
-				
+
 			}
-			
-			if(current == null){
+
+			if (current == null) {
 				System.out.println("It can't find target value:" + target);
-			}else{
-				if(current == first || current == last){
-					searchFlag = true ;
-					System.out.println("Remove the target value that it should be in the middle");
-				}else{
+			} else {
+				if (current == first || current == last) {
+					searchFlag = true;
+					System.out
+							.println("Remove the target value that it should be in the middle");
+				} else {
 					previous.next = current.next;
 				}
-				
-				if (!searchFlag) System.out.println("It can't find target value:" + target);
+
+				if (!searchFlag)
+					System.out.println("It can't find target value:" + target);
 			}
-			
-			
-			
-			
+
 		}
 	}
 
