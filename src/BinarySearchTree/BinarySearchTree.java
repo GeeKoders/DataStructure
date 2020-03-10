@@ -6,9 +6,28 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
 	@Override
 	public void traversal() {
-		// TODO Auto-generated method stub
+
+		if (root != null) {
+			inOrderTraversal(root);
+		}
 
 	}
+
+	private void inOrderTraversal(Node<T> node) {
+
+		if (node.getLeftChild() != null) {
+			inOrderTraversal(node.getLeftChild());
+
+		}
+
+		System.out.println(node + "  -->  ");
+
+		if (node.getRightChild() != null) {
+			inOrderTraversal(node.getRightChild());
+		}
+
+	}
+
 	@Override
 	public void insert(T data) {
 
@@ -46,6 +65,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 		// TODO Auto-generated method stub
 
 	}
+
 	@Override
 	public T getMaxValue() {
 
@@ -57,11 +77,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 	}
 
 	private T getMax(Node<T> node) {
-		
-		if( node.getRightChild()!=null){
-			getMax( node.getRightChild()) ;
+
+		if (node.getRightChild() != null) {
+			getMax(node.getRightChild());
 		}
-		
+
 		return node.getData();
 	}
 
