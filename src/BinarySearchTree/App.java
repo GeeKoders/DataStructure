@@ -4,15 +4,14 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-		Tree<String> bst = new BinarySearchTree<>() ;
+		Tree<Integer> bst = new BinarySearchTree<>() ;
 		
-		bst.insert("Adam") ;
-		bst.insert("Joe") ;
-		bst.insert("Michael") ;
-		bst.insert("Kevin") ;
-		bst.insert("Staff") ;
-		bst.insert("Daniel") ;
+		bst.insert(10) ;
+		bst.insert(5) ;
+		bst.insert(15) ;
+		bst.insert(3) ;
 		
+		bst.delete(5);
 		bst.traversal();
 		
 	}
