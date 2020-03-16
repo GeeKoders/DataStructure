@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class Test {
 
@@ -133,10 +132,10 @@ public class Test {
 			last = newNode;
 		} else {
 			if (target == -1) {
-				if (StringUtils.equals("H", type)) { // Head
+				if ("H".equals(type)) { // Head
 					newNode.next = first;
 					first = newNode;
-				} else if (StringUtils.equals("T", type)) { // Tail
+				} else if ("T".equals(type)) { // Tail
 					last.next = newNode;
 					last = newNode;
 				}
