@@ -1,6 +1,7 @@
 package BinarySearchTree;
 
 public interface Tree<T> {
+	public int getAgeSum() ;
 	public Node<T> getKSmallest(Node<T> node, int k) ;
 	public Node<T> getRoot() ;
 	public void traversal() ; 

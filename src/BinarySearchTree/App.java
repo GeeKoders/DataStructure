@@ -49,16 +49,31 @@ public class App {
 //		System.out.println(helper.compareTrees(bst1.getRoot(), bst2.getRoot())) ;
 		
 		// =======================================
+//		
+//		Tree<Integer> bst = new BinarySearchTree<>() ;
+//		
+//		bst.insert(2);
+//		bst.insert(55) ;
+//		bst.insert(67) ;
+//		bst.insert(12) ;
+//		bst.insert(11) ;
+//		
+//		System.out.println(bst.getKSmallest(bst.getRoot(), 4));
 		
-		Tree<Integer> bst = new BinarySearchTree<>() ;
+		// =======================================
 		
-		bst.insert(2);
-		bst.insert(55) ;
-		bst.insert(67) ;
-		bst.insert(12) ;
-		bst.insert(11) ;
+		Tree<Person> bst = new BinarySearchTree<>() ;
 		
-		System.out.println(bst.getKSmallest(bst.getRoot(), 4));
+		bst.insert(new Person("Adam", 47));
+		bst.insert(new Person("Kevin", 21));
+		bst.insert(new Person("Joe", 55));
+		bst.insert(new Person("Arnold", 20));
+		bst.insert(new Person("Noel", 34));
+		bst.insert(new Person("Marko", 68));
+		bst.insert(new Person("Susan", 23));
+		bst.insert(new Person("Rose", 38));
+		
+		System.out.println(bst.getAgeSum());
 		
 	}
 	

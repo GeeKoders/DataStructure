@@ -184,4 +184,37 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 		
 	}
 
+	@Override
+	public int getAgeSum() {
+		return getAges(this.root);
+	}
+
+	private int getAges(Node<T> node) {
+		
+		System.out.println("considering node " + node);
+		
+		//we have to reinitialize the variables (sum is the parent's node value so the sum of the subtrees so far)
+		int sum = 0 ;
+		int leftSum = 0 ;
+		int rightSum = 0 ;
+		
+		//null nodes have sum value 0
+		if(node == null){
+			return 0 ;
+		}
+		
+		//we do a simple post-order traversal because here we have to calculate both left and right value to 
+		//be able to calculate the parent's value (sum of childrens' ages)
+		//check the left subtree recursively
+		leftSum = getAges(node.getLeftChild()) ;
+		//check the right subtree recursively
+		rightSum = getAges(node.getRightChild()) ;
+		
+		//update the sum ... given node's value is the own value + left subtree sum + right subtree sum
+		System.out.println("Considering node " + node + " total ages so far is " +((((Person)node.getData()).getAge() + leftSum + rightSum)));
+		sum = ((Person)node.getData()).getAge() + leftSum + rightSum ;
+		
+		return sum;
+	}
+
 }
