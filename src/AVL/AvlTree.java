@@ -11,6 +11,11 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 		root = insert(root, data);
 
 	}
+	
+	@Override
+	public void delete(T data) {
+		root = delete(root, data);
+	}
 
 	// 7
 	private Node<T> insert(Node<T> node, T data) {
@@ -72,16 +77,11 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 			return node;
 
 		// first we have to look for the node we want to get rid of
-		if (data.compareTo(node.getData()) < -1) { // data smaller than given
-													// node's data -> go to the
-													// left recursively
+		if (data.compareTo(node.getData()) < 0) {  // data smaller than given node's data -> go to the left recursively
 			node.setLeftNode(delete(node.getLeftNode(), data));
-		} else if (data.compareTo(node.getData()) > 1) { // data greater than
-															// given node's data
-															// -> go to the
-															// right recursively
+		} else if (data.compareTo(node.getData()) > 0) { // data greater than given node's data -> go to the right recursively
 			node.setRightNode(delete(node.getRightNode(), data));
-		} else { // we have found the node we want to remove !!!
+		} else {  // we have found the node we want to remove !!!
 
 			if (node.getLeftNode() == null && node.getRightNode() == null) {
 				System.out.println("Removing a leaf node...");
@@ -93,9 +93,7 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 				Node<T> tempNode = node.getRightNode();
 				node = null;
 				return tempNode;
-			}
-
-			if (node.getRightNode() == null) {
+			} else if (node.getRightNode() == null) {
 				System.out.println("Removing the left child...");
 				Node<T> tempNode = node.getLeftNode();
 				node = null;
@@ -107,15 +105,13 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 			Node<T> tempNode = getPredecessor(node.getLeftNode());
 
 			node.setData(tempNode.getData());
-			node.setLeftNode(delete(node.getLeftNode(), data));
-
+			node.setLeftNode(delete(node.getLeftNode(), tempNode.getData()));
 		}
 
 		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
-		
+
 		// have to check on every delete operation whether the tree has become unbalanced or not !!!
 		return settleDeletion(node);
-
 	}
 	// 11
 	private Node<T> settleDeletion(Node<T> node) {
