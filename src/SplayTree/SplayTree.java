@@ -40,9 +40,101 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
 		this.size++;
 
 	}
+	
+	private void rotateLeft(Node<T> node) {
 
-	private void splay(Node<T> tempNode) {
+		Node<T> tempNode = node.getRightNode();
 
+		if (tempNode != null) {
+
+			node.setRightNode(tempNode.getLeftNode());
+
+			if (tempNode.getLeftNode() != null) {
+				tempNode.getLeftNode().setParentNode(node);
+			}
+
+			tempNode.setParentNode(node.getParentNode());
+		}
+
+		if (node.getParentNode() == null) {
+			this.rootNode = tempNode;
+		} else if (node == node.getParentNode().getLeftNode()) {
+			node.getParentNode().setLeftNode(tempNode);
+		} else {
+			node.getParentNode().setRightNode(tempNode);
+		}
+
+		if (tempNode != null) {
+			tempNode.setLeftNode(node);
+		}
+
+		node.setParentNode(tempNode);
+	}
+
+	private void rotateRight(Node<T> node) {
+
+		Node<T> tempNode = node.getLeftNode();
+
+		if (tempNode != null) {
+			node.setLeftNode(tempNode.getRightNode());
+
+			if (tempNode.getRightNode() != null) {
+				tempNode.getRightNode().setParentNode(node);
+			}
+
+			tempNode.setParentNode(node.getParentNode());
+		}
+
+		if (node.getParentNode() == null) {
+			this.rootNode = tempNode;
+		} else if (node == node.getParentNode().getLeftNode()) {
+			node.getParentNode().setLeftNode(tempNode);
+		} else {
+			node.getParentNode().setRightNode(tempNode);
+		}
+
+		if (tempNode != null) {
+			tempNode.setRightNode(node);
+		}
+
+		node.setParentNode(tempNode);
+	}
+
+
+	private void splay(Node<T> node) {
+		
+		
+		while (node.getParentNode() != null) {
+			
+			// ZIG SITUATION
+			if (node.getParentNode().getParentNode() == null) {
+				if (node.getParentNode().getLeftNode() == node) { // so the node is left child + grandparent is null
+					rotateRight(node.getParentNode());
+				} else { // the node is a right child + grandparent is null
+					rotateLeft(node.getParentNode());
+				}
+				
+			// ZIG-ZIG SITUATION
+			} else if (node.getParentNode().getLeftNode() == node
+					&& node.getParentNode().getParentNode().getLeftNode() == node.getParentNode()) { // so left child and parent is a left child too 
+				rotateRight(node.getParentNode().getParentNode());
+				rotateRight(node.getParentNode());
+			} else if (node.getParentNode().getRightNode() == node // so right child and parent is a right child too
+					&& node.getParentNode().getParentNode().getRightNode() == node.getParentNode()) {
+				rotateLeft(node.getParentNode().getParentNode());
+				rotateLeft(node.getParentNode());
+			
+			// ZIG-ZAG SITUATION 
+			} else if (node.getParentNode().getLeftNode() == node // zig-zag: so left child and parent is a right child
+					&& node.getParentNode().getParentNode().getRightNode() == node.getParentNode()) {
+				rotateRight(node.getParentNode());
+				rotateLeft(node.getParentNode());
+			} else { // this is the zig-zag situation: so right child and parent is a left child
+				rotateLeft(node.getParentNode());
+				rotateRight(node.getParentNode());
+			}
+		}
+		
 	}
 
 	@Override
