@@ -46,23 +46,76 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
 	}
 
 	@Override
-	public Node find(Comparable data) {
-		// TODO Auto-generated method stub
+	public Node find(T data) {
+
+		Node<T> tempNode = this.rootNode ;
+		
+		while(tempNode != null){
+			
+			if(tempNode.getData().compareTo(data)<0){
+				tempNode = tempNode.getRightNode() ;
+			}else if(tempNode.getData().compareTo(data)>0){
+				tempNode = tempNode.getLeftNode() ;
+			}else{
+				splay(tempNode) ;
+				return tempNode ;
+			}
+		}
+		
+		splay(tempNode) ;
 		return null;
 	}
 
 	@Override
 	public T getMin() {
-		// TODO Auto-generated method stub
+		
+		if(!isEmpty()){
+			return getMin(rootNode) ;
+		}
+		
 		return null;
+	}
+
+	private T getMin(Node<T> node) {
+		
+		if(node.getLeftNode()!=null){
+			return getMin(node.getLeftNode()) ;
+		}else{
+			return node.getData() ;
+		}
 	}
 
 	@Override
 	public T getMax() {
-		// TODO Auto-generated method stub
+		
+		if(!isEmpty()){
+			return getMax(rootNode) ;
+		}
+		
 		return null;
 	}
 
+	private T getMax(Node<T> node) {
+		
+		if(node.getRightNode()!=null){
+			return getMax(node.getRightNode()) ;
+		}else{
+			return node.getData() ;
+		}
+	}
+	
+	public void printRoot(){
+		System.out.println(rootNode);
+	}
+	
+	public boolean isEmpty(){
+		return this.rootNode == null ;
+	}
+	
+	public int size(){
+		return this.size ;
+	}
+	
 	@Override
 	public void inOrderTraversal() {
 
