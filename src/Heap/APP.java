@@ -26,11 +26,24 @@ public class APP {
 
 		// heap.heapsort() ;
 
-		CheckHeap checkHeap = new CheckHeap();
-
-		int[] array = { 10, 14, 19, 26, 31, 42, 27, 44, 35, 33, 35 };
-
-		System.out.println(checkHeap.isMinHeap(array));
+//		CheckHeap checkHeap = new CheckHeap();
+//
+//		int[] array = { 10, 14, 19, 26, 31, 42, 27, 44, 35, 33, 35 };
+//
+//		System.out.println(checkHeap.isMinHeap(array));
+		
+		
+		int[] maxHeap = {210,100,23,2,5};
+		
+		HeapConverter heapConverter = new HeapConverter(maxHeap);
+		
+		int[] minHeap = heapConverter.transform();
+		
+		for(int i=0;i<minHeap.length;i++)
+			System.out.print(minHeap[i]+" ");
+		
+		
+		
 
 	}
 
