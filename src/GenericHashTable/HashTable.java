@@ -33,6 +33,37 @@ public class HashTable<Key, Value> {
 		return this.numOfItems == 0;
 	}
 
+	public void put(Key key, Value value) {
+
+		if (key == null || value == null)
+			return;
+
+		if (numOfItems >= capacity * 0.75) { // O(1) -> O(N)
+			resize(2 * capacity);
+		}
+
+		int index = hash(key);
+
+		while (keys[index] != null) {
+
+			//update
+			if (keys[index].equals(key)) {
+				values[index] = value;
+				return;
+			}
+			index = (index + 1) % capacity;
+		}
+		
+		keys[index] = key ;
+		values[index] = value ;
+		numOfItems ++ ; 
+		
+		
+		
+		
+
+	}
+
 	public Value get(Key key) {
 
 		if (key == null)
