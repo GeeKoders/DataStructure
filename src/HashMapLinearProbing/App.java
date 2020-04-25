@@ -3,8 +3,22 @@ package HashMapLinearProbing;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		
+		
+		HashTable hashTable = new HashTable() ;
+		hashTable.put(1, 10);
+		System.out.println();
+		
+		hashTable.put(2, 100);
+		System.out.println();
+		
+		hashTable.put(3, 1000);
+		System.out.println();
+		
+		System.out.println(hashTable.get(3));
+		
+		
 	}
 
 }

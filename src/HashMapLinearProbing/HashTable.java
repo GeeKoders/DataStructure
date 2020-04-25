@@ -12,8 +12,9 @@ public class HashTable {
 		
 		int generatedIndex = hashFunction(key) ;
 		
-		while(hashTable[generatedIndex] != null && hashTable[generatedIndex].getKey() == key){
+		while(hashTable[generatedIndex] != null && hashTable[generatedIndex].getKey() != key){
 			generatedIndex = (generatedIndex + 1) % Constants.TABLE_SIZE ;  
+			System.out.println("Hoping to the next index: " + generatedIndex);
 		}
 		
 		if(hashTable[generatedIndex] == null){
@@ -30,17 +31,19 @@ public class HashTable {
 	
 	public void put(int key, int value){
 		int generatedIndex = hashFunction(key) ;
-		
+		System.out.println("put() method called with value: " + value + " - generatedIndex:" + generatedIndex );
 		while(hashTable[generatedIndex] != null){
 			generatedIndex = (generatedIndex+1) % Constants.TABLE_SIZE ;
+			System.out.println("Collision -> nextIndex: " + generatedIndex);
 		}
-		
+		System.out.println("Inserted finally with index: " + generatedIndex);
 		hashTable[generatedIndex] = new HashItem(key, value) ;
 		
 	}
 
 	private int hashFunction(int key) {
-		return key % Constants.TABLE_SIZE;
+//		return key % Constants.TABLE_SIZE;
+		return 0 ;
 	}
 	
 	
