@@ -32,6 +32,41 @@ public class HashTable<Key, Value> {
 	public boolean isEmpty() {
 		return this.numOfItems == 0;
 	}
+	
+	public void remove(Key key){
+		
+		if( key == null ) return ;
+		
+		int index = hash(key) ;
+		
+		while(!keys[index].equals(key)){
+			index = (index+1) % capacity ;
+		}
+		
+		keys[index] = null ;
+		values[index] = null ;
+		numOfItems-- ;
+		
+		while(keys[index]!=null){
+			
+			Key tempKey = keys[index] ;
+			Value tempValue = values[index] ;
+			
+			keys[index] = null ;
+			values[index] = null ;
+			
+			numOfItems -- ;
+			put(tempKey, tempValue) ;
+			
+			index = (index+1) % capacity ;
+		}
+		
+		
+		
+		if(numOfItems <= capacity/3) 
+			resize(capacity/2) ;
+		
+	}
 
 	public void put(Key key, Value value) {
 
