@@ -32,39 +32,54 @@ public class HashTable<Key, Value> {
 	public boolean isEmpty() {
 		return this.numOfItems == 0;
 	}
-	
-	public void remove(Key key){
+
+	public void remove(Key key) {
+
+		if (key == null)
+			return;
+
+		int index = hash(key);
+
+		while (!keys[index].equals(key)) {
+			index = (index + 1) % capacity;
+		}
+
+		keys[index] = null;
+		values[index] = null;
+		numOfItems--;
+
+		while (keys[index] != null) {
+
+			Key tempKey = keys[index];
+			Value tempValue = values[index];
+
+			keys[index] = null;
+			values[index] = null;
+
+			numOfItems--;
+			put(tempKey, tempValue);
+
+			index = (index + 1) % capacity;
+		}
+
+		if (numOfItems <= capacity / 3)
+			resize(capacity / 2);
+
+	}
+
+	// O(N) conclusion: we have to make sure we minimize the number of resize operations !!!
+	private void resize(int newCapacity) {
 		
-		if( key == null ) return ;
-		
-		int index = hash(key) ;
-		
-		while(!keys[index].equals(key)){
-			index = (index+1) % capacity ;
+		HashTable<Key, Value> newTable = new HashTable<>(newCapacity) ;
+		for(int i=0;i<capacity;i++){
+			if(keys[i] != null){
+				newTable.put(keys[i], values[i]);
+			}
 		}
 		
-		keys[index] = null ;
-		values[index] = null ;
-		numOfItems-- ;
-		
-		while(keys[index]!=null){
-			
-			Key tempKey = keys[index] ;
-			Value tempValue = values[index] ;
-			
-			keys[index] = null ;
-			values[index] = null ;
-			
-			numOfItems -- ;
-			put(tempKey, tempValue) ;
-			
-			index = (index+1) % capacity ;
-		}
-		
-		
-		
-		if(numOfItems <= capacity/3) 
-			resize(capacity/2) ;
+		keys = newTable.getKeys() ;
+		values = newTable.getValues() ;
+		capacity = newTable.getCapacity() ;
 		
 	}
 
@@ -81,22 +96,17 @@ public class HashTable<Key, Value> {
 
 		while (keys[index] != null) {
 
-			//update
+			// update
 			if (keys[index].equals(key)) {
 				values[index] = value;
 				return;
 			}
 			index = (index + 1) % capacity;
 		}
-		
-		keys[index] = key ;
-		values[index] = value ;
-		numOfItems ++ ; 
-		
-		
-		
-		
 
+		keys[index] = key;
+		values[index] = value;
+		numOfItems++;
 	}
 
 	public Value get(Key key) {
@@ -122,6 +132,30 @@ public class HashTable<Key, Value> {
 
 	public int hash(Key key) {
 		return key.hashCode() % capacity;
+	}
+
+	public Key[] getKeys() {
+		return keys;
+	}
+
+	public void setKeys(Key[] keys) {
+		this.keys = keys;
+	}
+
+	public Value[] getValues() {
+		return values;
+	}
+
+	public void setValues(Value[] values) {
+		this.values = values;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 }
