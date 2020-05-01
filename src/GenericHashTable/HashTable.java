@@ -62,8 +62,11 @@ public class HashTable<Key, Value> {
 			index = (index + 1) % capacity;
 		}
 
-		if (numOfItems <= capacity / 3)
+		if (numOfItems <= capacity / 3){
+			System.out.println("Resizing the table: halfing the size...");
 			resize(capacity / 2);
+		}
+			
 
 	}
 
@@ -89,6 +92,7 @@ public class HashTable<Key, Value> {
 			return;
 
 		if (numOfItems >= capacity * 0.75) { // O(1) -> O(N)
+			System.out.println("Doubling the size of the hash table...");
 			resize(2 * capacity);
 		}
 
