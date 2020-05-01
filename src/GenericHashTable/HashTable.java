@@ -135,7 +135,7 @@ public class HashTable<Key, Value> {
 	}
 
 	public int hash(Key key) {
-		return key.hashCode() % capacity;
+		return Math.abs(key.hashCode()) % capacity; // avoid the negative value
 	}
 
 	public Key[] getKeys() {
