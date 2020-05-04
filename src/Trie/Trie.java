@@ -8,7 +8,7 @@ public class Trie {
 		this.root = new Node("");
 	}
 
-	public void insert(String key) {
+	public void insert(String key, int value) {
 
 		Node tempNode = root;
 
@@ -20,7 +20,7 @@ public class Trie {
 
 			if (tempNode.getChild(asciiIndex) == null) {
 				Node node = new Node(String.valueOf(c));
-				tempNode.setChild(asciiIndex, node);
+				tempNode.setChild(asciiIndex, node, value);
 				tempNode = node;
 			} else {
 				tempNode = tempNode.getChild(asciiIndex);
@@ -47,9 +47,32 @@ public class Trie {
 			}
 		}
 
-		if(!trieNode.isLeaf()) return false ;
-			
+		if (!trieNode.isLeaf())
+			return false;
+
 		return true;
+
+	}
+
+	// O(length(key))
+	public Integer searchAsMap(String key) {
+
+		Node trieNode = root;
+
+		for (int i = 0; i < key.length(); ++i) {
+
+			char c = key.charAt(i);
+			int ascIndex = c - 'a';
+
+			if (trieNode.getChild(ascIndex) != null) {
+				trieNode = trieNode.getChild(ascIndex);
+			} else {
+				return null ;
+			}
+		}
+
+
+		return trieNode.getValue();
 
 	}
 }

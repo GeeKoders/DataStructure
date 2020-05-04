@@ -10,13 +10,24 @@ public class Node {
 
 	private boolean visited;
 
+	private int value;
+
 	public Node(String character) {
 		this.character = character;
 		children = new Node[Constant.ALPHABET_SIZE];
 	}
 
-	public void setChild(int index, Node node) {
+	public void setChild(int index, Node node, int value) {
+		node.setValue(value);
 		this.children[index] = node;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	public String getCharacter() {
@@ -50,9 +61,9 @@ public class Node {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
-	
-	public Node getChild(int index){
-		return children[index] ;
+
+	public Node getChild(int index) {
+		return children[index];
 	}
 
 	@Override
