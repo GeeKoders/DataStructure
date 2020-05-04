@@ -6,7 +6,7 @@ public class Node {
 
 	private Node[] children;
 
-	private boolean lead;
+	private boolean leaf;
 
 	private boolean visited;
 
@@ -35,12 +35,12 @@ public class Node {
 		this.children = children;
 	}
 
-	public boolean isLead() {
-		return lead;
+	public boolean isLeaf() {
+		return leaf;
 	}
 
-	public void setLead(boolean lead) {
-		this.lead = lead;
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
 	}
 
 	public boolean isVisited() {
@@ -49,6 +49,10 @@ public class Node {
 
 	public void setVisited(boolean visited) {
 		this.visited = visited;
+	}
+	
+	public Node getChild(int index){
+		return children[index] ;
 	}
 
 	@Override
