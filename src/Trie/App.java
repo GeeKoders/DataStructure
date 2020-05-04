@@ -3,8 +3,17 @@ package Trie;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		Trie trie = new Trie() ;
+		
+		trie.insert("joe");
+		trie.insert("joell");
+		trie.insert("adamovich");
+		trie.insert("helloworld");
+
+		
+		System.out.println(trie.search("helloworlds"));
+		
 	}
 
 }
