@@ -37,17 +37,25 @@ public class App {
 //		}
 //---------------------------------------------------------	
 
+//		trie.insert("adam", 1) ;
+//		trie.insert("kevin", 2) ;
+//		trie.insert("evelin", 3) ;
+//		trie.insert("addams", 4) ;
+//		trie.insert("junior", 5) ;
+//		
+//		List<String> list = trie.allWordsWithPrefix("") ;
+//		
+//		for(String s:list){
+//			System.out.println(s);
+//		}
+//---------------------------------------------------------			
+		
 		trie.insert("adam", 1) ;
-		trie.insert("kevin", 2) ;
-		trie.insert("evelin", 3) ;
-		trie.insert("addams", 4) ;
-		trie.insert("junior", 5) ;
+		trie.insert("adamm", 2) ;
+		trie.insert("adamee", 3) ;
 		
-		List<String> list = trie.allWordsWithPrefix("") ;
+		System.out.println(trie.longestCommonPrefix());
 		
-		for(String s:list){
-			System.out.println(s);
-		}
 		
 		
 	}

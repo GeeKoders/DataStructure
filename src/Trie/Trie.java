@@ -6,6 +6,8 @@ import java.util.List;
 public class Trie {
 
 	private Node root;
+	
+	private int indexOfSingleChild;
 
 	public Trie() {
 		this.root = new Node("");
@@ -95,6 +97,36 @@ public class Trie {
 		return allWords;
 
 	}
+	
+	public String longestCommonPrefix() {
+		
+		Node trieNode = root;
+		String lcp = "";
+		
+		while( countNumOfChildren(trieNode) == 1 && !trieNode.isLeaf() ) {
+			trieNode = trieNode.getChild(indexOfSingleChild);
+			lcp = lcp + String.valueOf((char) (indexOfSingleChild+'a'));
+		}
+		
+		return lcp;
+	}
+	
+	private int countNumOfChildren(Node trieNode) {
+		
+		int numOfChildren = 0;
+		
+		for(int i=0;i<trieNode.getChildren().length;++i) {
+			if( trieNode.getChild(i) != null ) {
+				numOfChildren++;
+				indexOfSingleChild = i;
+				System.out.println("indexOfSingleChild:" + indexOfSingleChild);
+			}
+		}
+		
+		return numOfChildren;
+	}
+	
+	
 
 	private void collect(Node node, String prefix, List<String> allWords) {
 
