@@ -1,5 +1,8 @@
 package Trie;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trie {
 
 	private Node root;
@@ -67,12 +70,49 @@ public class Trie {
 			if (trieNode.getChild(ascIndex) != null) {
 				trieNode = trieNode.getChild(ascIndex);
 			} else {
-				return null ;
+				return null;
 			}
 		}
-
 
 		return trieNode.getValue();
 
 	}
+
+	public List<String> allWordsWithPrefix(String prefix) {
+
+		Node trieNode = root;
+		List<String> allWords = new ArrayList<>();
+
+		for (int i = 0; i < prefix.length(); ++i) {
+
+			char c = prefix.charAt(i);
+			int ascIndex = c - 'a';
+			trieNode = trieNode.getChild(ascIndex);
+		}
+
+		collect(trieNode, prefix, allWords);
+
+		return allWords;
+
+	}
+
+	private void collect(Node node, String prefix, List<String> allWords) {
+
+		if (node == null)
+			return;
+
+		if (node.isLeaf()) {
+			allWords.add(prefix);
+		}
+
+		for (Node childNode : node.getChildren()) {
+
+			if (childNode == null)
+				continue;
+			String childCharacter = childNode.getCharacter();
+			collect(childNode, prefix + childCharacter, allWords);
+		}
+
+	}
+
 }
