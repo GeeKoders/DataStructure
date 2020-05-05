@@ -24,17 +24,31 @@ public class App {
 		
 //---------------------------------------------------------	
 
-		trie.insert("adam", 1) ;
-		trie.insert("adr", 2) ;
-		trie.insert("adda", 3) ;
-		trie.insert("adada", 4) ;
-		trie.insert("adazzz", 1) ;
+//		trie.insert("adam", 1) ;
+//		trie.insert("adr", 2) ;
+//		trie.insert("adda", 3) ;
+//		trie.insert("adada", 4) ;
+//		trie.insert("adazzz", 1) ;
+//
+//		List<String> list = trie.allWordsWithPrefix("ada") ;
+//		
+//		for(String s:list){
+//			System.out.println(s);
+//		}
+//---------------------------------------------------------	
 
-		List<String> list = trie.allWordsWithPrefix("ada") ;
+		trie.insert("adam", 1) ;
+		trie.insert("kevin", 2) ;
+		trie.insert("evelin", 3) ;
+		trie.insert("addams", 4) ;
+		trie.insert("junior", 5) ;
+		
+		List<String> list = trie.allWordsWithPrefix("") ;
 		
 		for(String s:list){
 			System.out.println(s);
 		}
+		
 		
 	}
 
