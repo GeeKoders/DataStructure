@@ -11,17 +11,25 @@ public class TST {
 	public Node put(Node node, String key, int value, int index) {
 
 		char c = key.charAt(index);
-
+		System.out.println("index:" + index);
+		System.out.println("c:" + c);
+		
 		if (node == null)
 			node = new Node(c);
+		
+		System.out.println("initial:" + node.getCharacter());
 
 		if (c < node.getCharacter()) {
+			System.out.println("c < node.getCharacter():" + node.getCharacter());
 			node.setLeftNode(put(node.getLeftNode(), key, value, index));
 		} else if (c > node.getCharacter()) {
+			System.out.println("c > node.getCharacter():" + node.getCharacter());
 			node.setRigghtNode(put(node.getRigghtNode(), key, value, index));
 		} else if (index < key.length() - 1) {
+			System.out.println("node.setMiddleNode()");
 			node.setMiddleNode(put(node.getMiddleNode(), key, value, index + 1));
 		} else {
+			System.out.println("node.setValue()");
 			node.setValue(value);
 		}
 
