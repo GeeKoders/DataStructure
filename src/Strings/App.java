@@ -17,6 +17,12 @@ public class App {
 			System.out.println(s);
 		}
 		
+		List<String> prefixes = operations.getPrefixes("House") ;
+		
+		for(String s:prefixes){
+			System.out.println(s);
+		}
+		
 	}
 
 }

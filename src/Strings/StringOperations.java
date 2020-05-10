@@ -19,13 +19,27 @@ public class StringOperations {
 
 	}
 
+	public List<String> getPrefixes(String text) {
+
+		int lengthOftext = text.length(); // O(1)
+
+		List<String> prefixList = new ArrayList<>();
+
+		for (int index = 0; index < lengthOftext+1; ++index) {
+			prefixList.add(text.substring(0, index)); // O(1) !!!
+		}
+
+		return prefixList;
+
+	}
+
 	public List<String> getSuffixes(String text) {
 
 		int lengthOftext = text.length(); // O(1)
 
 		List<String> suffixesList = new ArrayList<>();
 
-		for (int index = 0; index < lengthOftext; index++) {
+		for (int index = 0; index < lengthOftext; ++index) {
 			suffixesList.add(text.substring(index, lengthOftext)); // O(1) !!!
 		}
 
