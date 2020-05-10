@@ -1,5 +1,8 @@
 package Strings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringOperations {
 
 	public String reverseString(String text) {
@@ -13,6 +16,20 @@ public class StringOperations {
 														// O(N)
 		}
 		return reversedString.toString();
+
+	}
+
+	public List<String> getSuffixes(String text) {
+
+		int lengthOftext = text.length(); // O(1)
+
+		List<String> suffixesList = new ArrayList<>();
+
+		for (int index = 0; index < lengthOftext; index++) {
+			suffixesList.add(text.substring(index, lengthOftext)); // O(1) !!!
+		}
+
+		return suffixesList;
 
 	}
 
