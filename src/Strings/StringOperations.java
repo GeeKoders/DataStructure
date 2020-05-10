@@ -1,6 +1,7 @@
 package Strings;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StringOperations {
@@ -17,6 +18,32 @@ public class StringOperations {
 		}
 		return reversedString.toString();
 
+	}
+
+	public String longestRepeatedSubstirng(String text){
+		
+		int lengthOfText = text.length();
+		
+		List<String> suffixList = getSuffixes(text); // O(N)
+		
+		Collections.sort(suffixList); // O(NlogN) BUT O(N)
+		
+		String longestSubstring = "";
+		
+		for(String s: suffixList){
+			System.out.println(s);
+		}
+		
+		
+		for(int i=0;i<lengthOfText-1;i++){
+			String tempString = longestCommonPrefix(suffixList.get(i), suffixList.get(i+1));
+			
+			if( tempString.length() > longestSubstring.length()){
+				longestSubstring = tempString;
+			}
+		}
+		
+		return longestSubstring;
 	}
 
 	// O(N) !!!
