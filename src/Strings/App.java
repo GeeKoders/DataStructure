@@ -23,6 +23,8 @@ public class App {
 			System.out.println(s);
 		}
 		
+		System.out.println(operations.longestCommonPrefix("Helo", "Hellook"));
+		
 	}
 
 }
