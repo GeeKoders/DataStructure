@@ -20,5 +20,4 @@ public class HuffmanLeaf extends HuffmanTree {
 	public void setValue(char value) {
 		this.value = value;
 	}
-
 }

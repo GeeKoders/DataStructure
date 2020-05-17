@@ -7,8 +7,8 @@ public class HuffmanNode extends HuffmanTree {
 
 	public HuffmanNode(HuffmanTree rightTree, HuffmanTree leftTree) {
 		super(rightTree.getFrequency() + leftTree.getFrequency());
-		this.leftTree = leftTree;
 		this.rightTree = rightTree;
+		this.leftTree = leftTree;
 	}
 
 	public HuffmanTree getRightTree() {
@@ -26,5 +26,4 @@ public class HuffmanNode extends HuffmanTree {
 	public void setLeftTree(HuffmanTree leftTree) {
 		this.leftTree = leftTree;
 	}
-
 }

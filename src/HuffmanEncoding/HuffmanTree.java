@@ -2,7 +2,7 @@ package HuffmanEncoding;
 
 public class HuffmanTree implements Comparable<HuffmanTree> {
 
-	protected int frequency;
+	private int frequency;
 
 	public HuffmanTree(int frequency) {
 		this.frequency = frequency;
@@ -17,8 +17,7 @@ public class HuffmanTree implements Comparable<HuffmanTree> {
 	}
 
 	@Override
-	public int compareTo(HuffmanTree otherTree) {
-		return Integer.compare(this.frequency, otherTree.frequency) ;
+	public int compareTo(HuffmanTree anotherTree) {
+		return Integer.compare(this.frequency, anotherTree.getFrequency());
 	}
-
 }

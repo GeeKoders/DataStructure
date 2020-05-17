@@ -3,8 +3,20 @@ package HuffmanEncoding;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		String text = "My name is Joeiiii!";
+		
+		int[] charFrequencies = new int[256];
+		
+		for(char c : text.toCharArray()){
+			++charFrequencies[c];
+		}
+		
+		HuffmanCode huffmanCode = new HuffmanCode();
+		
+		HuffmanTree huffmanTree = huffmanCode.buildTree(charFrequencies);
+		
+		huffmanCode.printCodes(huffmanTree, new StringBuilder());
 
 	}
-
 }
