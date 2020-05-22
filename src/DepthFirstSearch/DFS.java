@@ -11,12 +11,26 @@ public class DFS {
 		this.stack = new Stack<>();
 	}
 
+	private void dfsRecursive(Vertex v) {
+		System.out.println(v + " ");
+
+		for (Vertex vertex : v.getNeighbourList()) {
+
+			if (!v.isVisited()) {
+				vertex.setVisited(true);
+				dfsRecursive(vertex);
+			}
+
+		}
+
+	}
+
 	public void dfs(List<Vertex> vertexList) {
 
 		for (Vertex v : vertexList) {
 			if (!v.isVisited()) {
 				v.setVisited(true);
-				dfsWithStack(v);
+				dfsRecursive(v);
 			}
 		}
 
