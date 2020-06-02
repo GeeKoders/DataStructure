@@ -1,6 +1,6 @@
 package PrimeAlgorithm;
 
-public class Edge implements Comparable<Edge> {
+public class Edge implements Comparable<Edge>{
 
 	private double weight;
 	private Vertex startVertex;
@@ -35,10 +35,14 @@ public class Edge implements Comparable<Edge> {
 	public void setTargetVertex(Vertex targetVertex) {
 		this.targetVertex = targetVertex;
 	}
+	
+	@Override
+	public String toString() {
+		return this.startVertex+"-"+this.targetVertex;
+	}
 
 	@Override
 	public int compareTo(Edge otherEdge) {
 		return Double.compare(this.weight, otherEdge.getWeight());
 	}
-
 }

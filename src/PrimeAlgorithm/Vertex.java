@@ -15,8 +15,20 @@ public class Vertex {
 		this.adjacencies = new ArrayList<>();
 	}
 
-	public void addEdge(Edge edge) {
+	public Vertex getPreviousVertex() {
+		return previousVertex;
+	}
+	
+	public void addEdge(Edge edge){
 		this.adjacencies.add(edge);
+	}
+
+	public List<Edge> getAdjacencies() {
+		return adjacencies;
+	}
+
+	public void setPreviousVertex(Vertex previousVertex) {
+		this.previousVertex = previousVertex;
 	}
 
 	public boolean isVisited() {
@@ -26,26 +38,9 @@ public class Vertex {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
-
-	public Vertex getPreviousVertex() {
-		return previousVertex;
-	}
-
-	public void setPreviousVertex(Vertex previousVertex) {
-		this.previousVertex = previousVertex;
-	}
-
-	public List<Edge> getAdjacencies() {
-		return adjacencies;
-	}
-
-	public void setAdjacencies(List<Edge> adjacencies) {
-		this.adjacencies = adjacencies;
-	}
-
+	
 	@Override
 	public String toString() {
-		return this.name;
+		return ""+this.name;
 	}
-
 }
