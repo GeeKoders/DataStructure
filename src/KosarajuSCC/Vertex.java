@@ -9,7 +9,7 @@ public class Vertex {
 	private String name;
 	private boolean visited;
 	private List<Vertex> adjacenciesList;
-	private int componendId;
+	private int componentId;
 
 	public Vertex(int id, String name) {
 
@@ -51,12 +51,12 @@ public class Vertex {
 		this.adjacenciesList = adjacenciesList;
 	}
 
-	public int getComponendId() {
-		return componendId;
+	public int getComponentId() {
+		return componentId;
 	}
 
-	public void setComponendId(int componendId) {
-		this.componendId = componendId;
+	public void setComponentId(int componentId) {
+		this.componentId = componentId;
 	}
 	
 	public void addNeighbour(Vertex vertex){

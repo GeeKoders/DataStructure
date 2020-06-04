@@ -29,7 +29,7 @@ public class KosarajuAlgorithm {
 
 		marked[vertex.getId()] = true;
 		id[vertex.getId()] = count;
-		vertex.setComponendId(count);
+		vertex.setComponentId(count);
 
 		for (Vertex v : vertex.getAdjacenciesList()) {
 			if (!marked[v.getId()]) {
@@ -37,6 +37,10 @@ public class KosarajuAlgorithm {
 			}
 		}
 
+	}
+	
+	public int getCount(){
+		return this.count ;
 	}
 
 }

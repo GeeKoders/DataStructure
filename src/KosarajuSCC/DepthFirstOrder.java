@@ -30,6 +30,8 @@ public class DepthFirstOrder {
 			}
 
 		}
+		
+		stack.push(vertex) ;
 
 	}
 	
