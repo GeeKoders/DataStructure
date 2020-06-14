@@ -16,7 +16,7 @@ public class DFS {
 
 		for (Vertex vertex : v.getNeighbourList()) {
 
-			if (!v.isVisited()) {
+			if (!vertex.isVisited()) {
 				vertex.setVisited(true);
 				dfsRecursive(vertex);
 			}
@@ -27,10 +27,10 @@ public class DFS {
 
 	public void dfs(List<Vertex> vertexList) {
 
-		for (Vertex v : vertexList) {
-			if (!v.isVisited()) {
-				v.setVisited(true);
-				dfsRecursive(v);
+		for (Vertex vertex : vertexList) {
+			if (!vertex.isVisited()) {
+				vertex.setVisited(true);
+				dfsRecursive(vertex);
 			}
 		}
 
@@ -46,10 +46,10 @@ public class DFS {
 			Vertex actualVertex = this.stack.pop();
 			System.out.println(actualVertex + " ");
 
-			for (Vertex v : actualVertex.getNeighbourList()) {
-				if (!v.isVisited()) {
-					v.setVisited(true);
-					this.stack.push(v);
+			for (Vertex vertex : actualVertex.getNeighbourList()) {
+				if (!vertex.isVisited()) {
+					vertex.setVisited(true);
+					this.stack.push(vertex);
 				}
 			}
 
