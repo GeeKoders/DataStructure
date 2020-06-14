@@ -18,7 +18,7 @@ public class CycleDetection {
 	private void dfs(Vertex vertex) {
 		System.out.println("DFS on vertex " + vertex);
 		vertex.setBeingVisited(true);
-		
+		vertex.setVisited(true);
 		for(Vertex v: vertex.getAdjacenciesList()){
 			
 			System.out.println("Visiting the neighbours of vertex " + vertex);
@@ -29,7 +29,7 @@ public class CycleDetection {
 			}
 			
 			if(!v.isVisited()){
-				System.out.println("Visiting vertex " + v + "recursively...");
+				System.out.println("Visiting vertex " + v + " recursively...");
 				v.setVisited(true);
 				dfs(v) ;
 			}
@@ -37,7 +37,7 @@ public class CycleDetection {
 		}
 		System.out.println("Set vertex " + vertex + " setBeingVisited(false) and visited(true)...");
 		vertex.setBeingVisited(false);
-		vertex.setVisited(true);
+		
 		
 	}
 
