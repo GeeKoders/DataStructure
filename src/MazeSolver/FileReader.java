@@ -32,7 +32,7 @@ public class FileReader {
 					
 					if( map[i][j] == 2 ){   // we have found the 2 so save the col and row indexes !!!
 						startPositionCol = j;
-						startPositionCol = i;
+						startPositionRow = i;
 					}
 				}
 			}

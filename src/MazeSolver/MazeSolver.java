@@ -17,7 +17,7 @@ public class MazeSolver {
 	public void findWayOut() {
 		
 		try{
-			dfs(startPositionRow,startPositionCol+1);
+			dfs(startPositionRow,startPositionCol);
 			System.out.println("No solution found...");
 		}catch(RuntimeException e){
 			System.out.println("Route found to exit!!!");
