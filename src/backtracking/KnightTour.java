@@ -10,7 +10,6 @@ public class KnightTour {
 	
 	
 	private int boardSize = 8 ;
-	private int numOfMoves = 8 ;
 	private int[][] solutionMatrix ;
 	private int[] xMoves = {2, 1, -1, -2, -2, -1, 1, 2} ;
 	private int[] yMoves = {1, 2, 2, 1, -1, -2, -2, -1} ;
@@ -53,7 +52,7 @@ public class KnightTour {
 			return true ;
 		}
 		
-		for(int i=0; i<numOfMoves; i++){
+		for(int i=0; i<xMoves.length; i++){
 			
 			int nextX = x + xMoves[i] ;
 			int nextY = y + yMoves[i] ;
