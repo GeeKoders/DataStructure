@@ -31,7 +31,7 @@ public class RodCutting {
 			for(int j=1;j<=lenghtOfRod;j++) {
 				
 				if( i <= j ) {
-					dpTable[i][j] = Math.max(dpTable[i-1][j], prices[i] + dpTable[i-1][j-i]);
+					dpTable[i][j] = Math.max(dpTable[i-1][j], prices[i] + dpTable[i][j-i]);
 				} else {
 					dpTable[i][j] = dpTable[i-1][j];
 				}
