@@ -4,7 +4,7 @@ public class PalindromeProblem {
 
 	public static void main(String[] args) {
 		PalindromeProblem algorithm = new PalindromeProblem() ;
-		System.out.println(algorithm.solution1("bapab"));
+		System.out.println(algorithm.solution2("bpab"));
 	}
 	
 	public boolean solution1(String text){
@@ -23,8 +23,22 @@ public class PalindromeProblem {
 		
 		return true ;
 		
+	}
+	
+	public boolean solution2(String text){
 		
+		String reversed = "" ;
+		int length = text.length() ;
 		
+		for(int i=0; i< length; i++){
+			
+			reversed = reversed + text.charAt(length - i - 1) ;
+		}	
+		if(text.equals(reversed)){
+			return true ;
+		}
+		
+		return false ;
 	}
 
 }
