@@ -4,7 +4,7 @@ public class PalindromeProblem {
 
 	public static void main(String[] args) {
 		PalindromeProblem algorithm = new PalindromeProblem() ;
-		System.out.println(algorithm.solution2("bpab"));
+		System.out.println(algorithm.solution3("abcba"));
 	}
 	
 	public boolean solution1(String text){
@@ -39,6 +39,27 @@ public class PalindromeProblem {
 		}
 		
 		return false ;
+	}
+	
+	public boolean solution3(String text){
+		
+		int i = 0 ;
+		int j = text.length() - 1 ;
+		int k = (i + j)/2 ;
+		
+		for(int index = i; index<=k; index++){
+			
+			if(text.charAt(i) == text.charAt(j)){
+				i++ ;
+				j-- ;
+			}else{
+				return false ;
+			}
+			
+		}
+		
+		return true ;
+		
 	}
 
 }
