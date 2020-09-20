@@ -7,8 +7,8 @@ public class IntegerReversionProblem {
 		
 		IntegerReversionProblem algorithm = new IntegerReversionProblem(); 
 		
-		System.out.println(algorithm.solution1(4321)) ;
-		
+//		System.out.println(algorithm.solution1(4321)) ;
+		System.out.println(algorithm.solution2(4321)) ;
 	}
 	
 	public Integer solution1(Integer number){
@@ -40,5 +40,18 @@ public class IntegerReversionProblem {
 		num[j] = tmp ;
 	}
 	
+	public int solution2(int n){
+		
+		int reversed = 0 ;
+		int reminder = 0 ;
+		
+		while(n>0){
+			
+			reminder = n % 10 ;
+			n = n / 10 ;
+			reversed = reversed * 10 + reminder ;
+		}
+		return reversed ;
+	}
 
 }
