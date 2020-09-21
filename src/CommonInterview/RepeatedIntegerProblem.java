@@ -8,7 +8,8 @@ public class RepeatedIntegerProblem {
 	public static void main(String[] args) {
 		RepeatedIntegerProblem repeatedIntegerProblem = new RepeatedIntegerProblem() ;
 		int []nums ={2, 3, 1, 2, 4, 3} ;
-		repeatedIntegerProblem.solution1(nums) ;
+//		repeatedIntegerProblem.solution1(nums) ;
+		repeatedIntegerProblem.solution2(nums) ;
 	}
 	
 	public void solution1(int [] nums){
@@ -24,6 +25,18 @@ public class RepeatedIntegerProblem {
 			}
 		}
 		
+	}
+	
+	public void solution2(int []nums){
+		
+		for(int i=0; i<nums.length; i++){
+			
+			if(nums[Math.abs(nums[i])] > 0){
+				nums[Math.abs(nums[i])] = -nums[Math.abs(nums[i])] ;
+			}else{
+				System.out.println(Math.abs(nums[i]) + " is a repetition!");
+			}
+		}
 	}
 
 }
