@@ -1,19 +1,63 @@
 package Practice.Tree;
 
-public class Tree<T> {
+public class Tree {
 	
-	private Node<T> root ;
+	private static Node root ;
 	
 	public static void main(String[] args) {
 		
+		Tree bst = new Tree() ;
+		bst.insert(5);
+		bst.insert(3);
+		bst.insert(6);
+		bst.insert(4);
+		bst.insert(2);
+		
+		bst.inOderTraversal(root); 
+		
+		
 	}
 	
-	public void inOderTraversal(Node<T> root){
+	public void insert(int data){
+		
+		if(root == null){
+			root = new Node(data); 
+		}else{
+			insertNode(root, data) ;
+		}
+		
+		
+	}
+	
+	private void insertNode(Node root, int data) {
+
+		Node curr = root ;
+			
+		if(data < curr.data){
+			
+			if(curr.left != null){
+				insertNode(curr.left, data) ;
+			}else{
+				Node newNode = new Node(data) ;
+				curr.left = newNode ;
+			}
+		}else{
+			if(curr.right != null){
+				insertNode(curr.right, data) ;
+			}else{
+				Node newNode = new Node(data) ;
+				curr.right = newNode ;
+			}
+		}
+		
+	}
+
+	public void inOderTraversal(Node root){
 		if(root == null) return ;
 		inOrder(root) ;
 	}
 
-	private void inOrder(Node<T> root) {
+	private void inOrder(Node root) {
 		if(root != null){
 			inOrder(root.left) ;
 			System.out.println(root.data);
@@ -21,12 +65,12 @@ public class Tree<T> {
 		}
 	}
 	
-	public void preOderTraversal(Node<T> root){
+	public void preOderTraversal(Node root){
 		if(root == null) return ;
 		preOrder(root) ;
 	}
 
-	private void preOrder(Node<T> root) {
+	private void preOrder(Node root) {
 		if(root != null){
 			System.out.println(root.data);
 			preOrder(root.left) ;
@@ -34,12 +78,12 @@ public class Tree<T> {
 		}
 	}
 	
-	public void postOderTraversal(Node<T> root){
+	public void postOderTraversal(Node root){
 		if(root == null) return ;
 		postOrder(root) ;
 	}
 
-	private void postOrder(Node<T> root) {
+	private void postOrder(Node root) {
 		if(root != null){
 			postOrder(root.left) ;
 			postOrder(root.right) ;
@@ -50,14 +94,14 @@ public class Tree<T> {
 }
 
 
-class Node<T>{
+class Node{
 	
-	T data ;
-	Node<T> left ;
-	Node<T> right ;
-	Node<T> next ;
+	int data ;
+	Node left ;
+	Node right ;
+	Node next ;
 	
-	public Node(T data) {
+	public Node(int data) {
 		this.data = data ;
 		this.next = null ;
 	}
