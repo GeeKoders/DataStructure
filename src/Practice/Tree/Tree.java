@@ -21,6 +21,7 @@ public class Tree {
 //		System.out.println(bst.getMin(root));
 //		System.out.println(bst.getRoot().data);
 		System.out.println(bst.getPredecessor(root.left));
+		System.out.println(bst.getSuccessor(root.right));
 	}
 	
 	public Node getRoot(){
@@ -34,6 +35,19 @@ public class Tree {
 		Node curr = root ;
 		if(curr.right != null){
 			return getPredecessor(curr.right) ;
+		}
+		
+		return curr.data ;
+		
+	}
+	
+	public Integer getSuccessor(Node root){
+		
+		if(root == null) return null ;
+		Node curr = root ;
+		
+		if(curr.left !=null){
+			return getSuccessor(curr.left) ;
 		}
 		
 		return curr.data ;
