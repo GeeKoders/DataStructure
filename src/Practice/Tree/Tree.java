@@ -14,8 +14,8 @@ public class Tree {
 		bst.insert(2);
 		
 //		bst.inOderTraversal(root); 
-		System.out.println(bst.getMax(root));
-		
+//		System.out.println(bst.getMax(root));
+		System.out.println(bst.getMin(root));
 	}
 	
 	public void insert(int data){
@@ -58,6 +58,16 @@ public class Tree {
 			curr = curr.right ;
 		}
 		return curr.data ;
+	}
+	
+	public int getMin(Node root){
+		Node curr = root ;
+		while(curr.left!=null){
+			curr = curr.left ;
+		}
+		
+		return curr.data ;
+		
 	}
 
 	public void inOderTraversal(Node root){
