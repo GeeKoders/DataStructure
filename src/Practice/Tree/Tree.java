@@ -15,7 +15,12 @@ public class Tree {
 		
 //		bst.inOderTraversal(root); 
 //		System.out.println(bst.getMax(root));
-		System.out.println(bst.getMin(root));
+//		System.out.println(bst.getMin(root));
+		System.out.println(bst.getRoot().data);
+	}
+	
+	public Node getRoot(){
+		return root ;
 	}
 	
 	public void insert(int data){
@@ -52,7 +57,9 @@ public class Tree {
 		
 	}
 	
-	public int getMax(Node root){
+	public Integer getMax(Node root){
+		
+		if(root == null) return null ;
 		Node curr = root ;
 		while(curr.right!=null){
 			curr = curr.right ;
@@ -60,7 +67,8 @@ public class Tree {
 		return curr.data ;
 	}
 	
-	public int getMin(Node root){
+	public Integer getMin(Node root){
+		if(root == null) return null ;
 		Node curr = root ;
 		while(curr.left!=null){
 			curr = curr.left ;
