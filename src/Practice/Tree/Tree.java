@@ -10,11 +10,11 @@ public class Tree {
 		bst.insert(5);
 		bst.insert(3);
 		bst.insert(6);
-		bst.insert(4);
+		bst.insert(9);
 		bst.insert(2);
 		
-		bst.inOderTraversal(root); 
-		
+//		bst.inOderTraversal(root); 
+		System.out.println(bst.getMax(root));
 		
 	}
 	
@@ -50,6 +50,14 @@ public class Tree {
 			}
 		}
 		
+	}
+	
+	public int getMax(Node root){
+		Node curr = root ;
+		while(curr.right!=null){
+			curr = curr.right ;
+		}
+		return curr.data ;
 	}
 
 	public void inOderTraversal(Node root){
