@@ -7,20 +7,37 @@ public class Tree {
 	public static void main(String[] args) {
 		
 		Tree bst = new Tree() ;
-		bst.insert(5);
-		bst.insert(3);
-		bst.insert(6);
-		bst.insert(9);
-		bst.insert(2);
+		bst.insert(32);
+		bst.insert(10);
+		bst.insert(55);
+		bst.insert(1);
+		bst.insert(19);
+		bst.insert(79);
+		bst.insert(16);
+		bst.insert(23);
 		
 //		bst.inOderTraversal(root); 
 //		System.out.println(bst.getMax(root));
 //		System.out.println(bst.getMin(root));
-		System.out.println(bst.getRoot().data);
+//		System.out.println(bst.getRoot().data);
+		System.out.println(bst.getPredecessor(root.left));
 	}
 	
 	public Node getRoot(){
 		return root ;
+	}
+	//largest item in the left subtree
+	public Integer getPredecessor(Node root){
+		
+		if(root == null) return null ;
+		
+		Node curr = root ;
+		if(curr.right != null){
+			return getPredecessor(curr.right) ;
+		}
+		
+		return curr.data ;
+		
 	}
 	
 	public void insert(int data){
