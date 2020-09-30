@@ -148,6 +148,47 @@ public class Tree {
 		}
 	}
 	
+	public void delete(int data){
+		
+		if(root != null){
+			root = delete(root, data) ;
+		}
+		
+	}
+
+	private Node delete(Node root, int data) {
+		
+		if(root == null) return null ;
+		
+		Node curr = root ;
+		
+		if(data < curr.data){
+			delete(curr.left, data) ;
+		}else if(data > curr.data){
+			delete(curr.right, data) ;
+		}else{
+			
+			if(curr.left == null && curr.right == null){
+				System.out.println("Removing a leaf node...");
+				return null ;
+			}
+			//update the reference
+			if(curr.left == null){
+				System.out.println("Removing the right child...");
+				Node temp = curr.right ;
+				curr = null ;
+				return temp ;
+			}else if(curr.right == null){
+				System.out.println("Removing the left child...");
+				Node temp = curr.left ;
+				curr = null ;
+				return temp ;
+			}
+			
+		}
+		return null;
+	}
+	
 }
 
 
