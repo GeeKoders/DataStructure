@@ -1,5 +1,6 @@
 package Practice.Tree;
 
+
 public class Tree {
 	
 	private static Node root ;
@@ -20,15 +21,17 @@ public class Tree {
 //		System.out.println(bst.getMax(root));
 //		System.out.println(bst.getMin(root));
 //		System.out.println(bst.getRoot().data);
-		System.out.println(bst.getPredecessor(root.left));
-		System.out.println(bst.getSuccessor(root.right));
+//		System.out.println((bst.getPredecessor(root.left)).data);
+//		System.out.println(bst.getSuccessor(root.right));
+		System.out.println(bst.delete(root, 32));
+		bst.inOderTraversal(root); 
 	}
 	
 	public Node getRoot(){
 		return root ;
 	}
 	//largest item in the left subtree
-	public Integer getPredecessor(Node root){
+	public Node getPredecessor(Node root){
 		
 		if(root == null) return null ;
 		
@@ -37,7 +40,7 @@ public class Tree {
 			return getPredecessor(curr.right) ;
 		}
 		
-		return curr.data ;
+		return curr ;
 		
 	}
 	
@@ -163,9 +166,9 @@ public class Tree {
 		Node curr = root ;
 		
 		if(data < curr.data){
-			delete(curr.left, data) ;
+			curr.left = delete(curr.left, data) ;
 		}else if(data > curr.data){
-			delete(curr.right, data) ;
+			curr.right = delete(curr.right, data) ;
 		}else{
 			
 			if(curr.left == null && curr.right == null){
@@ -185,8 +188,14 @@ public class Tree {
 				return temp ;
 			}
 			
+			//this is the node with two children case !!!
+			System.out.println("Removing item with two children...");
+			Node temp = getPredecessor(curr.left);
+			curr.data = temp.data ;
+			curr.left = delete(curr.left, temp.data) ;
+			
 		}
-		return null;
+		return curr;
 	}
 	
 }
@@ -203,6 +212,5 @@ class Node{
 		this.data = data ;
 		this.next = null ;
 	}
-	
 	
 }
