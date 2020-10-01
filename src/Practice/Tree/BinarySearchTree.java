@@ -1,9 +1,10 @@
 package Practice.Tree;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
 
 	private PersonNode<T> root ;
 	
+	@Override
 	public void insert(T data){
 		
 		if(root == null){
@@ -36,6 +37,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		
 	}
 	
+	@Override
 	public void traverse(){
 		if(root == null) return ;
 		traversal(root) ;
@@ -46,7 +48,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if(root.left != null){
 			traversal(root.left) ;
 		}
-		System.out.println(root + " --> ");
+		System.out.print(root + " --> ");
 		if(root.right != null){
 			traversal(root.right) ;
 		}
