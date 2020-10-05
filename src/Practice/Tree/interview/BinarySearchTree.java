@@ -172,8 +172,8 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 		
 		return null;
 	}
-
-	private int treeSize(Node<T> node) {
+	@Override
+	public int treeSize(Node<T> node) {
 		
 		//this is the base case
 		if(node==null) return 0;
