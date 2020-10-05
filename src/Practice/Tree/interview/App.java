@@ -14,7 +14,7 @@ public class App {
 
 		System.out.println(bst.treeSize(bst.getRoot()));
 		
-		
+		System.out.println(bst.getKSmallest(bst.getRoot(), 5)) ;
 	}
 
 }
