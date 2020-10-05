@@ -155,22 +155,26 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 		
 		//number of nodes in the left subtree
 		//+1 because we count the root node of the subtree as well
+		
 		int n = treeSize(node.getLeftChild()) + 1 ;
 		
-		if(n==k){
-			return node ;
-		}
+		
 		//if teh number of nodes int the left subtree > k-th smallest item
 		//it means the k-th smallest item is in the left subtree
-		if(n>k) return getKSmallest(node.getLeftChild(), k) ;
+		if(n == k){
+			return node ;
+		}
 		
 		//if the number of nodes in the left subtree is smaller than the k-th
 		//smallest item than we can discard the left subtree and consider the 
 		//right subtree
 		//NOW WE ARE NOT LOOKING FOR THE K-TH BUT THE K-Nth SMALLEST ITEM
-		if(n<k) return getKSmallest(node.getRightChild(), k-n) ;
 		
-		return null;
+		if(n>k) return getKSmallest(node.getLeftChild(), k) ;
+		
+		if(n<k) return getKSmallest(node.getRightChild(), k - n) ;
+		
+		return null ;
 	}
 	@Override
 	public int treeSize(Node<T> node) {
