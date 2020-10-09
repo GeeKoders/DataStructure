@@ -1,4 +1,4 @@
-package Practice.Tree;
+package Practice.Tree.binarySearchTree;
 
 public class App {
 

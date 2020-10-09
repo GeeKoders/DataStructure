@@ -1,4 +1,4 @@
-package Practice.Tree;
+package Practice.Tree.binarySearchTree;
 
 public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
 
