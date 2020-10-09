@@ -15,7 +15,7 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 		
 	}
 	
-	public void insert(Node<T> curr, T data){
+	public Node<T> insert(Node<T> curr, T data){
 		
 		if(data.compareTo(curr.getData()) < 0){
 			
@@ -35,6 +35,40 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 				insert(curr.getRightChild(), data) ;
 			}
 		}
+		
+		curr.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1);
+		curr = settleViolation(curr, data) ;
+		return curr ;
+		
+	}
+
+	private Node<T> settleViolation(Node<T> curr, T data) {
+		
+		int balance = getBalance(curr) ;
+		
+		//left-left rotation
+		if(balance > 1 && data.compareTo((T) curr.getLeftChild().getData()) < 0){
+			return rightRotation(curr) ;
+		}
+		
+		//right-right rotation
+		if(balance < -1 && data.compareTo((T)curr.getRightChild().getData()) > 0){
+			return leftRotation(curr) ;
+		}
+		
+		//left-right rotation
+		if(balance > 1 && data.compareTo((T)curr.getLeftChild().getData()) > 0){
+			curr.setLeftChild(leftRotation(curr.getLeftChild()));
+			return rightRotation(curr) ;
+		}
+		
+		//right-left rotation
+		if(balance < -1 && data.compareTo((T)curr.getRightChild().getData()) < 0){
+			curr.setRightChild(rightRotation(curr.getRightChild()));
+			return leftRotation(curr) ;
+		}
+
+		return curr;
 		
 	}
 
