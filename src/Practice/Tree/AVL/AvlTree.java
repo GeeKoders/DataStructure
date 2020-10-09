@@ -7,33 +7,18 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 	@Override
 	public void insert(T data) {
 		
-		if(root == null){
-			root = new Node<T>(data) ;
-		}else{
-			insert(root, data) ;
-		}
+		root = insert(root, data);
 		
 	}
 	
 	public Node<T> insert(Node<T> curr, T data){
 		
+		if(curr == null) return new Node<T>(data) ;
+		
 		if(data.compareTo(curr.getData()) < 0){
-			
-			if(curr.getLeftChild() == null){
-				Node<T> newNode = new Node<T>(data) ;
-				curr.setLeftChild(newNode);
-			}else{
-				insert(curr.getLeftChild(), data) ; 
-			}
-			
+			curr.setLeftChild(insert(curr.getLeftChild(), data));
 		}else{
-			
-			if(curr.getRightChild() == null){
-				Node<T> newNode = new Node<T>(data) ;
-				curr.setRightChild(newNode);
-			}else{
-				insert(curr.getRightChild(), data) ;
-			}
+			curr.setRightChild(insert(curr.getRightChild(), data));
 		}
 		
 		curr.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1);
@@ -133,8 +118,9 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 		tempRightNode.setLeftChild(curr) ;
 		curr.setRightChild(t);
 		
-		tempRightNode.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1);
 		curr.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1) ;
+		tempRightNode.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1);
+		
 		
 		return tempRightNode ;
 	}
