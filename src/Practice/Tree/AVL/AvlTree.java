@@ -88,9 +88,50 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 
 	@Override
 	public void delete(T data) {
-		
+		root = delete(root, data) ;
 	}
 	
+	private Node<T> delete(Node<T> curr, T data) {
+		
+		if(curr.getLeftChild() == null && curr.getRightChild() == null){
+			System.out.println("Removing the leaf node: " + curr);
+			return null ;
+		}
+		
+		if(curr.getLeftChild() == null){
+			System.out.println("Removing the right node: " + curr);
+			Node<T> tempRightChild = curr.getRightChild() ;
+			curr = null ;
+			return tempRightChild ;
+		}
+		
+		if(curr.getRightChild() == null){
+			System.out.println("Removing the left node: " + curr);
+			Node<T> tempLeftChild = curr.getLeftChild() ;
+			curr = null ;
+			return tempLeftChild ;
+		}
+		
+		Node<T> predecessorNode = getPredecessor(curr.getLeftChild()) ;
+		curr.setData(predecessorNode.getData());
+		curr.setLeftChild(delete(curr.getLeftChild(), predecessorNode.getData()));
+		
+		return settleDeletion(curr) ;
+	}
+
+	private Node<T> getPredecessor(Node<T> curr) {
+		
+		if(curr.getRightChild()!=null){
+			curr = getPredecessor(curr.getRightChild()) ;
+		}
+		
+		return curr;
+	}
+
+	private Node<T> settleDeletion(Node<T> curr) {
+		return null;
+	}
+
 	public Node<T> rightRotation(Node<T> curr){
 		
 		System.out.println("Rotating to the right on node: " + curr);
