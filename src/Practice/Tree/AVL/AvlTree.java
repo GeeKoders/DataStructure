@@ -93,28 +93,39 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 	
 	private Node<T> delete(Node<T> curr, T data) {
 		
-		if(curr.getLeftChild() == null && curr.getRightChild() == null){
-			System.out.println("Removing the leaf node: " + curr);
-			return null ;
+		
+		if(curr == null) return null ;
+		if(data.compareTo(curr.getData()) < 0){
+			curr.setLeftChild(delete(curr.getLeftChild(), data));
+		}else if(data.compareTo(curr.getData()) > 0){
+			curr.setRightChild(delete(curr.getRightChild(), data));
+		}else{
+			if(curr.getLeftChild() == null && curr.getRightChild() == null){
+				System.out.println("Removing the leaf node: " + curr);
+				return null ;
+			}
+			
+			if(curr.getLeftChild() == null){
+				System.out.println("Removing the right node: " + curr);
+				Node<T> tempRightChild = curr.getRightChild() ;
+				curr = null ;
+				return tempRightChild ;
+			}
+			
+			if(curr.getRightChild() == null){
+				System.out.println("Removing the left node: " + curr);
+				Node<T> tempLeftChild = curr.getLeftChild() ;
+				curr = null ;
+				return tempLeftChild ;
+			}
+			
+			Node<T> predecessorNode = getPredecessor(curr.getLeftChild()) ;
+			curr.setData(predecessorNode.getData());
+			curr.setLeftChild(delete(curr.getLeftChild(), predecessorNode.getData()));
 		}
 		
-		if(curr.getLeftChild() == null){
-			System.out.println("Removing the right node: " + curr);
-			Node<T> tempRightChild = curr.getRightChild() ;
-			curr = null ;
-			return tempRightChild ;
-		}
+		curr.setHeight(Math.max(height(curr.getLeftChild()), height(curr.getRightChild())) + 1);
 		
-		if(curr.getRightChild() == null){
-			System.out.println("Removing the left node: " + curr);
-			Node<T> tempLeftChild = curr.getLeftChild() ;
-			curr = null ;
-			return tempLeftChild ;
-		}
-		
-		Node<T> predecessorNode = getPredecessor(curr.getLeftChild()) ;
-		curr.setData(predecessorNode.getData());
-		curr.setLeftChild(delete(curr.getLeftChild(), predecessorNode.getData()));
 		
 		return settleDeletion(curr) ;
 	}
@@ -129,7 +140,29 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
 	}
 
 	private Node<T> settleDeletion(Node<T> curr) {
-		return null;
+		
+		int balance = getBalance(curr) ;
+		
+		if(balance > 1){
+		
+			if(getBalance(curr.getLeftChild()) < 0){
+				curr.setLeftChild(leftRotation(curr.getLeftChild()));
+			}
+			
+			return rightRotation(curr) ;
+		}
+		
+		if(balance < -1){
+			
+			if(getBalance(curr.getRightChild()) > 0){
+				curr.setRightChild(rightRotation(curr.getRightChild()));
+			}
+			
+			return leftRotation(curr) ;
+		}
+		
+		return curr ;
+		
 	}
 
 	public Node<T> rightRotation(Node<T> curr){
