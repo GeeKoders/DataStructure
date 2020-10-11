@@ -1,165 +1,159 @@
 package Practice.Tree.RedBlackTree;
 
-import RedBlackTree.NodeColor;
+public class RedBlackTree {
 
-public class RedBlackTree implements Tree {
+	private Node root;
 
-	private Node root ;
+	public void traverseGraph() {
+		if (this.root != null) {
+			traverseInOrder(root);
+		}
+	}
 	
-	
-	@Override
-	public void traverse() {
-
-		if(root == null) return ;
-		traverseInOrder(root); 
+	public void insert(int newData) {
 		
+		Node node = new Node(newData);
+		root = insertIntoTree(root, node);
 		
+		fixViolations(node);
 	}
 
-	private void traverseInOrder(Node curr) {
+	private Node insertIntoTree(Node root, Node node) {
 		
-		if(curr.getLeftChild()!=null){
-			traverseInOrder(curr.getLeftChild()) ;
+		if( root == null ) return node;
+		
+		if( node.getData() < root.getData() ) {
+			root.setLeftChild( insertIntoTree(root.getLeftChild(), node));
+			root.getLeftChild().setParent(root);
+		} else if ( node.getData() > root.getData() ) {
+			root.setRightChild( insertIntoTree(root.getRightChild(), node ));
+			root.getRightChild().setParent(root);
 		}
 		
-		System.out.println(curr + " with color: " + curr.getColor() + " Left node: " + curr.getLeftChild() + " Right node: " + curr.getRightChild() );
-		
-		if(curr.getRightChild()!=null){
-			traverseInOrder(curr.getRightChild()) ;
-		}
-	
-		
+		return root;
 	}
 
-	@Override
-	public void insert(int data) {
-
+	private void fixViolations(Node node) {
 		
-		if(root == null){
-			root = new Node(data) ;
-		}else{
-			root = insertIntoTree(root, data) ; 
-		}
+		Node parentNode = null;
+		Node grandParentNode = null;
 		
-		fixVioloations(root) ;
-		
-	}
-
-	private void fixVioloations(Node curr) {
-
-		Node parentNode = null ;
-		Node grandParentNode = null ;
-		
-		while( curr != root && curr.getColor() != NodeColor.BLACK && curr.getParent().getColor() == NodeColor.RED ) {
+		while( node != root && node.getColor() != NodeColor.BLACK && node.getParent().getColor() == NodeColor.RED ) {
 			
-			parentNode = curr.getParent() ;
-			grandParentNode = curr.getParent().getParent() ;
+			parentNode = node.getParent();
+			grandParentNode = node.getParent().getParent();
 			
-			if(parentNode == grandParentNode.getLeftChild()){
+			if( parentNode == grandParentNode.getLeftChild() ) {
 				
-				Node uncle = grandParentNode.getRightChild() ;
-				//case I && case VI
-				if(uncle != null && uncle.getColor() == NodeColor.RED){
+				Node uncle = grandParentNode.getRightChild();
+				
+				// given node x's parent is a left child + uncle is red --> only recoloring
+				if( uncle != null && uncle.getColor() == NodeColor.RED ) {
 					grandParentNode.setColor(NodeColor.RED);
 					parentNode.setColor(NodeColor.BLACK);
 					uncle.setColor(NodeColor.BLACK);
-					curr = grandParentNode ;
-				}else{
+					node = grandParentNode; // this will be the x after the recoloring because we have to check whether
+					// the properties are violated or not
+				} else {
 					
-					if(curr == parentNode.getRightChild()){
-						leftRotate(parentNode) ;
-						//update the reference
-						curr = parentNode ;
-						parentNode = curr.getParent() ;
-					}
-					//case III
-					rightRotate(grandParentNode) ;
-					NodeColor tempColor = parentNode.getColor() ;
-					parentNode.setColor(grandParentNode.getColor());
-					grandParentNode.setColor(tempColor);
-					curr = parentNode ;
-					
-					
-					
-				}
-				
-				
-			}else{
-				
-				Node uncle = grandParentNode.getLeftChild() ;
-				
-				if(uncle != null && uncle.getColor() == NodeColor.RED){
-					grandParentNode.setColor(NodeColor.RED);
-					parentNode.setColor(NodeColor.BLACK);
-					uncle.setColor(NodeColor.BLACK);
-					curr = grandParentNode ;
-				}else{
-					//case II
-					if(curr == parentNode.getLeftChild()){
-						rightRotate(parentNode) ;
-						System.out.println("Recoroling "+parentNode+" + "+grandParentNode);
-						//update the reference
-						curr = parentNode ;
-						parentNode = curr.getParent() ;
+					if( node == parentNode.getRightChild() ) {
+						leftRotate(parentNode);
+						node = parentNode;
+						parentNode = node.getParent();
 					}
 					
-					leftRotate(grandParentNode) ;
+					rightRotate(grandParentNode);
 					System.out.println("Recoroling "+parentNode+" + "+grandParentNode);
-					NodeColor tempColor = parentNode.getColor() ;
+					NodeColor tempColor = parentNode.getColor();
 					parentNode.setColor(grandParentNode.getColor());
 					grandParentNode.setColor(tempColor);
-					curr = parentNode ;
+					node = parentNode;
+				}
+			} else {
+				
+				Node uncle = grandParentNode.getLeftChild();
+				
+				if( uncle != null && uncle.getColor() == NodeColor.RED ) {
+					grandParentNode.setColor(NodeColor.RED);
+					parentNode.setColor(NodeColor.BLACK);
+					uncle.setColor(NodeColor.BLACK);
+					node = grandParentNode; 
+				} else {
+					
+					if( node == parentNode.getLeftChild()) {
+						rightRotate(parentNode);
+						node = parentNode;
+						parentNode = node.getParent();
+					}
+					leftRotate(grandParentNode);
+					System.out.println("Recoroling "+parentNode+" + "+grandParentNode);
+					NodeColor tempColor = parentNode.getColor();
+					parentNode.setColor(grandParentNode.getColor());
+					grandParentNode.setColor(tempColor);
+					node = parentNode;
 				}
 			}
-			
-			if(root.getColor() == NodeColor.RED){
-				System.out.println("Recoring the root to the black...");
-				root.setColor(NodeColor.BLACK) ;
-			}
-			
+		}
+		
+		if( root.getColor() == NodeColor.RED ) {
+			System.out.println("Recoloring the root to black...");
+			root.setColor(NodeColor.BLACK);
 		}
 	}
 
-	private Node insertIntoTree(Node curr, int data) {
-	
-		if(data < curr.getData()){
-			curr.setLeftChild(insertIntoTree(curr.getLeftChild(), data));
-			curr.getLeftChild().setParent(curr);
-		}else if(data > curr.getData()){
-			curr.setRightChild(insertIntoTree(curr.getRightChild(), data));
-			curr.getRightChild().setParent(curr);
-		}
+	private void rightRotate(Node node) { // az input a beszurt node grandparentje
+		System.out.println("Rotate right on node " + node);
+		Node tempLeftNode = node.getLeftChild();
+		node.setLeftChild(tempLeftNode.getRightChild());
 		
-		return curr ;
-	
-	}
-	
-	private void rightRotate(Node curr){
+		if( node.getLeftChild() != null )
+			node.getLeftChild().setParent(node);
 		
-		System.out.println("Rotate right on node: " + curr);
+		tempLeftNode.setParent(node.getParent());
 		
-		Node tempLeftNode = curr.getLeftChild() ;
-		Node t = tempLeftNode.getRightChild() ;
-		tempLeftNode.setRightChild(curr);
-		curr.setLeftChild(t);
+		if( tempLeftNode.getParent() == null )
+			root = tempLeftNode;
+		else if( node == node.getParent().getLeftChild() )
+			node.getParent().setLeftChild(tempLeftNode);
+		else
+			node.getParent().setRightChild(tempLeftNode);
 		
-		tempLeftNode.setParent(curr.getParent().getParent());
-		curr.setParent(tempLeftNode);
-		
-	}
-	
-	private void leftRotate(Node curr){
-		
-		System.out.println("Rotate left on node: " + curr);
-		
-		Node tempRightNode = curr.getRightChild() ;
-		Node t = tempRightNode.getLeftChild() ;
-		tempRightNode.setLeftChild(curr);
-		curr.setRightChild(t);
-		
-		tempRightNode.setParent(curr.getParent().getParent());
-		curr.setParent(tempRightNode);
-		
+		tempLeftNode.setRightChild(node);
+		node.setParent(tempLeftNode);
 	}
 
+	private void leftRotate(Node node) { // az input a beszurt node grandparentje
+		System.out.println("Rotate left on node " + node);
+		Node tempRightNode = node.getRightChild();
+		node.setRightChild(tempRightNode.getLeftChild());
+		
+		if( node.getRightChild() != null )
+			node.getRightChild().setParent(node);
+		
+		tempRightNode.setParent(node.getParent());
+		
+		if( tempRightNode.getParent() == null )
+			root = tempRightNode;
+		else if( node == node.getParent().getLeftChild() )
+			node.getParent().setLeftChild(tempRightNode);
+		else
+			node.getParent().setRightChild(tempRightNode);
+		
+		tempRightNode.setLeftChild(node);
+		node.setParent(tempRightNode);
+	}
+
+	private void traverseInOrder(Node node) {
+
+		if (node.getLeftChild() != null) {
+			traverseInOrder(node.getLeftChild());
+		}
+
+		System.out.println(node + " with color: " + node.getColor()+" LeftNode: "+node.getLeftChild()+" - RightNode: "+node.getRightChild());
+
+		if (node.getRightChild() != null) {
+			traverseInOrder(node.getRightChild());
+		}
+	}
 }
+
