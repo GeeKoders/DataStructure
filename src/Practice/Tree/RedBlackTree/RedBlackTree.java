@@ -20,7 +20,7 @@ public class RedBlackTree implements Tree {
 			traverseInOrder(curr.getLeftChild()) ;
 		}
 		
-		System.out.println(curr + " with color: " + curr.getColor() + " Left node: " +¡@curr.getLeftChild() + " Right node: " + curr.getRightChild() );
+		System.out.println(curr + " with color: " + curr.getColor() + " Left node: " + curr.getLeftChild() + " Right node: " + curr.getRightChild() );
 		
 		if(curr.getRightChild()!=null){
 			traverseInOrder(curr.getRightChild()) ;
@@ -31,8 +31,28 @@ public class RedBlackTree implements Tree {
 
 	@Override
 	public void insert(int data) {
-		// TODO Auto-generated method stub
+
 		
+		if(root == null){
+			root = new Node(data) ;
+		}else{
+			root = insertIntoTree(root, data) ; 
+		}
+		
+	}
+
+	private Node insertIntoTree(Node curr, int data) {
+	
+		if(data < curr.getData()){
+			curr.setLeftChild(insertIntoTree(curr.getLeftChild(), data));
+			curr.getLeftChild().setParent(curr);
+		}else if(data > curr.getData()){
+			curr.setRightChild(insertIntoTree(curr.getRightChild(), data));
+			curr.getRightChild().setParent(curr);
+		}
+		
+		return curr ;
+	
 	}
 
 }
