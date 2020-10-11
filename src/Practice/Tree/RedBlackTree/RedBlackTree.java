@@ -54,5 +54,33 @@ public class RedBlackTree implements Tree {
 		return curr ;
 	
 	}
+	
+	private void rightRotate(Node curr){
+		
+		System.out.println("Rotate right on node: " + curr);
+		
+		Node tempLeftNode = curr.getLeftChild() ;
+		Node t = tempLeftNode.getRightChild() ;
+		tempLeftNode.setRightChild(curr);
+		curr.setLeftChild(t);
+		
+		tempLeftNode.setParent(curr.getParent().getParent());
+		curr.setParent(tempLeftNode);
+		
+	}
+	
+	private void leftRotate(Node curr){
+		
+		System.out.println("Rotate left on node: " + curr);
+		
+		Node tempRightNode = curr.getRightChild() ;
+		Node t = tempRightNode.getLeftChild() ;
+		tempRightNode.setLeftChild(curr);
+		curr.setRightChild(t);
+		
+		tempRightNode.setParent(curr.getParent().getParent());
+		curr.setParent(tempRightNode);
+		
+	}
 
 }
