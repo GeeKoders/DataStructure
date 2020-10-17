@@ -1,6 +1,5 @@
 package Practice.Collection;
 
-import Collections.Person;
 
 public class Person implements Comparable<Person> {
 
