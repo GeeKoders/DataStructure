@@ -39,15 +39,76 @@ public class SplayTree <T extends Comparable<T>> implements Tree<T> {
 		this.size ++ ;
 		
 	}
+	
+	private void rotateLeft(Node<T> curr){
+		
+		System.out.println("Rotate left on node " + curr);
+		Node tempRightNode = curr.getRightNode();
+		curr.setRightNode(tempRightNode.getLeftNode());
+		
+		if( curr.getRightNode() != null )
+			curr.getRightNode().setParentNode(curr);
+		
+		tempRightNode.setParentNode(curr.getParentNode());
+		
+		if( tempRightNode.getParentNode() == null )
+			this.root = tempRightNode;
+		else if( curr == curr.getParentNode().getLeftNode() )
+			curr.getParentNode().setLeftNode(tempRightNode);
+		else
+			curr.getParentNode().setRightNode(tempRightNode);
+		
+		tempRightNode.setLeftNode(curr);
+		curr.setParentNode(tempRightNode);
+	}
+	
+	private void rotateRight(Node<T> curr){
+		
+		System.out.println("Rotate right on node " + curr);
+		Node tempLeftNode = curr.getLeftNode();
+		curr.setLeftNode(tempLeftNode.getRightNode());
+		
+		if( curr.getLeftNode() != null )
+			curr.getLeftNode().setParentNode(curr);
+		
+		tempLeftNode.setParentNode(curr.getParentNode());
+		
+		if( tempLeftNode.getParentNode() == null )
+			root = tempLeftNode;
+		else if( curr == curr.getParentNode().getLeftNode() )
+			curr.getParentNode().setLeftNode(tempLeftNode);
+		else
+			curr.getParentNode().setRightNode(tempLeftNode);
+		
+		tempLeftNode.setRightNode(curr);
+		curr.setParentNode(tempLeftNode);
+		
+	}
 
 	private void splay(Node<T> tempNode) {
-		// TODO Auto-generated method stub
+
+		
 		
 	}
 
 	@Override
 	public Node find(T data) {
-		// TODO Auto-generated method stub
+
+		Node<T> curr = this.root ;
+		
+		if(curr!=null){
+			
+			if(curr.getData().compareTo(data) < 0){
+				root = find(curr.getRightNode().getData()) ;
+			}else if(curr.getData().compareTo(data) > 0){
+				root = find(curr.getLeftNode().getData()) ;
+			}else{
+				splay(curr) ;
+				return curr ;
+			}
+			
+		}
+		splay(curr) ;
 		return null;
 	}
 
@@ -109,6 +170,18 @@ public class SplayTree <T extends Comparable<T>> implements Tree<T> {
 		if(curr.getRightNode() != null){
 			inOrderTraversal(curr.getRightNode()) ;
 		}
+	}
+	
+	public int size(){
+		return this.size ;
+	}
+	
+	public boolean isEmpty(){
+		return this.root == null ;
+	}
+	
+	public void printRoot(){
+		System.out.println(root);
 	}
 
 }
