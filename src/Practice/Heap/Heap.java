@@ -32,6 +32,40 @@ public class Heap {
 		}
 	}
 	
+	public int poll(){
+		
+		int max = getMax() ;
+		
+		swap(0, heapSize - 1) ;
+		this.heapSize-- ;
+		
+		fixDown(0) ;
+		return max ;
+		
+	}
+	
+	private void fixDown(int index) {
+
+		int indexLeft = 2 * index + 1 ;
+		int indexRight = 2 * index + 2 ;
+		
+		int indexLargest = index ;
+		
+		if(indexLeft < heapSize && heap[indexLeft] > heap[index]){
+			indexLargest = indexLeft ;
+		}
+		
+		if(indexRight < heapSize && heap[indexRight] > heap[indexLargest]) {
+			indexLargest = indexRight ;
+		}
+		
+		if(indexLargest != index){
+			swap(index, indexLargest) ;
+			fixDown(indexLargest) ;
+		}
+		
+	}
+
 	public boolean isHeapFull(){
 		return heapSize == Constants.CAPACITY ;
 	}
