@@ -65,6 +65,17 @@ public class Heap {
 		}
 		
 	}
+	
+	public void heapSort(){
+		
+		int size = this.heapSize ;
+		
+		for(int i=0; i<size; i++){
+			int max = poll() ;
+			System.out.print(max + " ");
+		}
+		
+	}
 
 	public boolean isHeapFull(){
 		return heapSize == Constants.CAPACITY ;
