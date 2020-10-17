@@ -85,8 +85,47 @@ public class SplayTree <T extends Comparable<T>> implements Tree<T> {
 		
 	}
 
-	private void splay(Node<T> tempNode) {
+	private void splay(Node<T> curr) {
 
+		
+		
+		while(curr.getParentNode() != null){
+			
+			//zig situation	
+			if(curr.getParentNode().getParentNode() == null){
+				
+				if(curr.getParentNode().getLeftNode() == curr){
+					rotateRight(curr.getParentNode()) ;
+				}else{
+					rotateLeft(curr.getParentNode()) ;
+				}
+			//zig-zig situation	
+			}else if(curr.getParentNode().getLeftNode() == curr
+					&& curr.getParentNode().getParentNode().getLeftNode() == curr.getParentNode()){ // left child and parent is a left child too
+				
+				rotateRight(curr.getParentNode().getParentNode()) ;
+				rotateRight(curr.getParentNode()) ;
+				
+			}else if(curr.getParentNode().getRightNode() == curr 
+					&& curr.getParentNode().getParentNode().getRightNode() == curr.getParentNode()){ // right child and parent is a right child too
+				
+				rotateLeft(curr.getParentNode().getParentNode()) ;
+				rotateLeft(curr.getParentNode()) ;
+			
+			// zig-zag situation
+			}else if(curr.getParentNode().getLeftNode() == curr
+					&& curr.getParentNode().getParentNode().getRightNode() == curr.getParentNode()){ // left child and parent is a right child
+				
+				rotateRight(curr.getParentNode()) ;
+				rotateLeft(curr.getParentNode()) ;
+				
+			}else{
+				rotateLeft(curr.getParentNode()) ;
+				rotateRight(curr.getParentNode()) ;
+			}
+			
+		}
+		
 		
 		
 	}
