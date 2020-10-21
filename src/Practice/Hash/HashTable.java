@@ -57,7 +57,8 @@ public class HashTable {
 	}
 	
 	private int hash(int key){
-		return key % Constants.TABLE_SIZE ;
+//		return key % Constants.TABLE_SIZE ;
+		return 1 ;
 	}
 	
 
