@@ -1,4 +1,4 @@
-package Practice.Hash;
+package Practice.Hash.Chaining;
 
 public class HashTable {
 	
