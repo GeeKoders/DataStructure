@@ -29,6 +29,29 @@ public class HashTable<Key, Value> {
 		return this.numOfItems == 0 ;
 	}
 	
+	public Value getKey(Key key){
+		
+		if(key == null) return null;
+		
+		int index = hash(key) ;
+		
+		while(keys[index]!=null){
+			if(keys[index].equals(key)){
+				return values[index] ;
+			}
+			
+			index = (index + 1) % capacity ;
+			
+		}
+		
+		return null ;
+		
+	}
+	
+	public int hash(Key key){
+		return Math.abs(key.hashCode()) % this.capacity ;
+	}
+	
 	
 		
 	
