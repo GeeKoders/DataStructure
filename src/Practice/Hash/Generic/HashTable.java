@@ -48,6 +48,39 @@ public class HashTable<Key, Value> {
 		
 	}
 	
+	public void remove(Key key){
+		
+		if(key == null) return ;
+		
+		int index = hash(key) ;
+		
+		while(!keys[index].equals(key)){
+			index = (index + 1) % capacity ;
+		}
+		
+		keys[index] = null ;
+		values[index] = null ;
+		numOfItems-- ;
+		
+		while(keys[index]!=null){
+			
+			Key tempKey = keys[index] ;
+			Value tempValue = values[index] ;
+			keys[index] = null ;
+			values[index] = null ;
+			numOfItems-- ;
+			
+			put(tempKey, tempValue) ;
+			index = (index + 1) % capacity ;
+		}
+		
+		if(numOfItems <= capacity / 3){
+			resize(capacity / 2) ;
+		}
+		
+		
+	}
+	
 	public void put(Key key, Value value){
 		
 		if(key == null || value == null) return ;
@@ -76,14 +109,56 @@ public class HashTable<Key, Value> {
 	}
 	
 	
+	private void resize(int newCapacity) {
+		HashTable<Key, Value> newTable = new HashTable<>(newCapacity) ;
+		
+		for(int i=0; i<capacity; i++){
+			if(keys[i]!=null){
+				newTable.put(keys[i], values[i]);
+			}
+		}
+		
+		keys = newTable.getKeys() ;
+		values = newTable.getValues() ;
+		capacity = newTable.getCapacity() ;
+		
+	}
+
 	public int hash(Key key){
 		return Math.abs(key.hashCode()) % this.capacity ;
 	}
-	
-	
-		
-	
-	
+
+	public Key[] getKeys() {
+		return keys;
+	}
+
+	public void setKeys(Key[] keys) {
+		this.keys = keys;
+	}
+
+	public Value[] getValues() {
+		return values;
+	}
+
+	public void setValues(Value[] values) {
+		this.values = values;
+	}
+
+	public int getNumOfItems() {
+		return numOfItems;
+	}
+
+	public void setNumOfItems(int numOfItems) {
+		this.numOfItems = numOfItems;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
 	
 
 }
