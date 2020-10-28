@@ -19,7 +19,7 @@ public class Node {
 		children = new Node[Constant.ALPHABET_SIZE];
 	}
 
-	public void setChild(int index, Node node){
+	public void setChild(int index, Node node, int value){
 		node.setValue(value);
 		this.children[index] = node ;
 	}
