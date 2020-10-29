@@ -6,12 +6,21 @@ public class App {
 
 		Trie trie = new Trie() ;
 		
-		trie.insert("joe");
-		trie.insert("joell");
-		trie.insert("adamovich");
-		trie.insert("helloworld");
+//		trie.insert("joe");
+//		trie.insert("joell");
+//		trie.insert("adamovich");
+//		trie.insert("helloworld");
+//		
+//		System.out.println(trie.search("joee"));
 		
-		System.out.println(trie.search("joee"));
+//////////////////////////////////////////////
+		
+		trie.insert("joe", 1);
+		trie.insert("adam", 2);
+
+		System.out.println(trie.searchAsMap("adam"));
+		
+		
 	}
 
 }
