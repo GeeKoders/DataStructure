@@ -30,7 +30,7 @@ public class App {
 		trie.insert("adada");
 		trie.insert("adazzz");
 		
-		List<String> list = trie.allWordsWithPrefix("ada") ;
+		List<String> list = trie.allWordsWithPrefix("") ;
 		
 		for(String s: list){
 			System.out.println(s);
