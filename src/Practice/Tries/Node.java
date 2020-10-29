@@ -3,7 +3,7 @@ package Practice.Tries;
 import Trie.Constant;
 
 public class Node {
-	
+
 	private String character;
 
 	private Node[] children;
@@ -19,9 +19,8 @@ public class Node {
 		children = new Node[Constant.ALPHABET_SIZE];
 	}
 
-	public void setChild(int index, Node node, int value){
-		node.setValue(value);
-		this.children[index] = node ;
+	public void setChild(int index, Node node) {
+		this.children[index] = node;
 	}
 
 	public int getValue() {
