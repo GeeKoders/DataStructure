@@ -1,5 +1,7 @@
 package Practice.Tries;
 
+import java.util.List;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -13,12 +15,29 @@ public class App {
 //		
 //		System.out.println(trie.search("joee"));
 		
-//////////////////////////////////////////////
+        /////////////////////////////////
 		
-		trie.insert("joe", 1);
-		trie.insert("adam", 2);
+//		trie.insert("joe", 1);
+//		trie.insert("adam", 2);
+//
+//		System.out.println(trie.searchAsMap("adam"));
 
-		System.out.println(trie.searchAsMap("adam"));
+		/////////////////////////////////
+		
+		trie.insert("adam");
+		trie.insert("adr");
+		trie.insert("adda");
+		trie.insert("adada");
+		trie.insert("adazzz");
+		
+		List<String> list = trie.allWordsWithPrefix("ada") ;
+		
+		for(String s: list){
+			System.out.println(s);
+		}
+		
+		
+		
 		
 		
 	}

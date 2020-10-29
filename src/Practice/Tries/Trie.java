@@ -11,7 +11,7 @@ public class Trie {
 		this.root = new Node("");
 	}
 
-	public void insert(String key, int value) {
+	public void insert(String key) {
 
 		Node tempNode = root;
 
@@ -23,7 +23,7 @@ public class Trie {
 
 			if (tempNode.getChild(asciiIndex) == null) {
 				Node node = new Node(String.valueOf(c));
-				tempNode.setChild(asciiIndex, node, value);
+				tempNode.setChild(asciiIndex, node);
 				tempNode = node;
 			} else {
 				tempNode = tempNode.getChild(asciiIndex);
@@ -75,6 +75,40 @@ public class Trie {
 
 		return trieNode.getValue();
 
+	}
+	
+	public List<String> allWordsWithPrefix(String prefix){
+		
+		Node trieNode = root ;
+		List<String> allWords = new ArrayList<>() ;
+		
+		for(int i=0; i<prefix.length(); i++){
+			char c = prefix.charAt(i) ;
+			int asciiIndex = c - 'a' ;
+			trieNode = trieNode.getChild(asciiIndex) ;
+		}
+		
+		collect(trieNode, prefix, allWords) ;
+		
+		return allWords ;
+		
+		
+	}
+
+	private void collect(Node node, String prefix, List<String> allWords) {
+		
+		if(node == null) return ;
+		
+		if(node.isLeaf()){
+			allWords.add(prefix) ;
+		}
+		
+		for(Node childNode: node.getChildren()){
+			
+			if(childNode == null) continue ;
+			String childrenCharacter = childNode.getCharacter() ;
+			collect(childNode, prefix+childrenCharacter, allWords) ;
+		}
 	}
 
 }
