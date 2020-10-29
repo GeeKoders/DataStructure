@@ -24,22 +24,24 @@ public class App {
 
 		/////////////////////////////////
 		
+//		trie.insert("adam");
+//		trie.insert("adr");
+//		trie.insert("adda");
+//		trie.insert("adada");
+//		trie.insert("adazzz");
+//		
+//		List<String> list = trie.allWordsWithPrefix("") ;
+//		
+//		for(String s: list){
+//			System.out.println(s);
+//		}
+		
+		/////////////////////////////////
 		trie.insert("adam");
-		trie.insert("adr");
-		trie.insert("adda");
-		trie.insert("adada");
-		trie.insert("adazzz");
+		trie.insert("adamm");
+		trie.insert("adamee");
 		
-		List<String> list = trie.allWordsWithPrefix("") ;
-		
-		for(String s: list){
-			System.out.println(s);
-		}
-		
-		
-		
-		
-		
+		System.out.println(trie.longestCommonPrefix());
 	}
 
 }
