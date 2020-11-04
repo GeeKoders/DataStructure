@@ -9,7 +9,9 @@ public class StringOperations {
 		
 		StringOperations so = new StringOperations() ;
 		
-		List<String> result = so.getPrefixes("house") ;
+//		List<String> result = so.getPrefixes("house") ;
+		
+		List<String> result = so.getSuffixes("house") ;
 		
 		for(String item: result){
 			System.out.println(item);
@@ -27,5 +29,17 @@ public class StringOperations {
 		return list ;
 		
 	}
+	
+	public List<String> getSuffixes(String text){
+		
+		List<String> list = new ArrayList<>() ;
+		
+		for(int index=0;index<text.length();index++){
+			list.add(text.substring(index, text.length())) ;
+		}
+		return list ;
+	}
+	
+	
 	
 }
