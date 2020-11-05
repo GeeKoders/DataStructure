@@ -1,6 +1,7 @@
 package Practice.String;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StringOperations {
@@ -18,8 +19,9 @@ public class StringOperations {
 //		}
 		
 		
-		System.out.println(so.longestCommonPrefix("Hello", "He"));
+//		System.out.println(so.longestCommonPrefix("Hello", "He"));
 		
+		System.out.println(so.longestRepeatedSubstring("heyhey"));
 	}
 	
 	public List<String> getPrefixes(String text){
@@ -57,6 +59,29 @@ public class StringOperations {
 		
 		return text2.substring(0, commonLength) ;
 		
+		
+	}
+	
+	public String longestRepeatedSubstring(String text){
+		
+		int lengthOfText = text.length() ;
+		
+		List<String> list = getSuffixes(text) ;
+		
+		Collections.sort(list) ;
+		
+		String longestSubString = "" ;
+		
+		for(int index=0; index<lengthOfText-1; index++){
+			
+			String tempString = longestCommonPrefix(list.get(index), list.get(index+1)) ;
+			
+			if(tempString.length() > longestSubString.length()){
+				longestSubString = tempString ;
+			}
+		}
+		
+		return longestSubString ;
 		
 	}
 	
