@@ -1,10 +1,10 @@
 package Practice.Sorting.BogoSort;
 
-public class App {
+public class BogoSort {
 
 	public static void main(String[] args) {
 
-		App app = new App() ;
+		BogoSort app = new BogoSort() ;
 		
 		int[] nums= {12, -4, 56, 0, 3, 8, 2, 1} ;
 		int counter = 0 ;
