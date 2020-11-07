@@ -1,0 +1,46 @@
+package Practice.Sorting.SelectionSort;
+
+public class SelectionSort {
+
+	public static void main(String[] args) {
+
+		int []nums = {3, 6, 0, -5, 5, 7, 2, 1} ;
+		SelectionSort selectionSort = new SelectionSort() ;
+		selectionSort.sort(nums);
+		selectionSort.showArray(nums);
+	}
+	
+	public void sort(int[] nums){
+		
+		for(int i=0; i<nums.length-1 ; i++){
+			
+			int index = i ;
+			
+			for(int j=i+1 ; j<nums.length-1; j++){
+				
+				if(nums[j]<nums[index]){
+					index = j ;
+				}
+			}
+			
+			if(i != index){
+				swap(nums, i, index) ;
+			}
+		}
+	}
+
+	private void swap(int[] nums, int j, int i) {
+
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
+
+	public void showArray(int[] nums) {
+
+		for (int i = 0; i < nums.length; i++) {
+			System.out.print(nums[i] + " ");
+		}
+	}
+
+}
