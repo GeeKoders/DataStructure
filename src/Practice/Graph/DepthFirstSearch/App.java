@@ -20,8 +20,8 @@ public class App {
 		v4.addNeighbour(v5);
 		
 		DFS dfs = new DFS() ;
-		dfs.dfsWithStack(v1);
-		
+//		dfs.dfsWithStack(v1);
+		dfs.dfsWithStack2(v1);
 	}
 
 }

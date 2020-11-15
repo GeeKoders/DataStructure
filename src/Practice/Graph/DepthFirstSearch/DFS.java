@@ -10,6 +10,8 @@ public class DFS {
 	public DFS() {
 		this.stack = new Stack<>();
 	}
+	
+	
 
 	public void dfsWithStack(Vertex rootVertex) {
 
@@ -30,6 +32,32 @@ public class DFS {
 
 		}
 
+	}
+	
+	public void dfsWithStack2(Vertex rootVertex) {
+
+		this.stack.add(rootVertex);
+		rootVertex.setVisited(true);
+
+		while (!stack.isEmpty()) {
+
+			Vertex actualVertex = this.stack.pop();
+			System.out.println(actualVertex + " ");
+
+			dfsRecursive(actualVertex);
+
+		}
+
+	}
+	
+	private void dfsRecursive(Vertex actualVertex){
+		
+		for (Vertex vertex : actualVertex.getNeighbourList()) {
+			if (!vertex.isVisited()) {
+				vertex.setVisited(true);
+				this.stack.push(vertex);
+			}
+		}
 	}
 
 }
