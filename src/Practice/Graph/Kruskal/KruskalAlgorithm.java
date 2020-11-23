@@ -25,7 +25,7 @@ public class KruskalAlgorithm {
 			
 		}
 		
-		for(Edge edge: msy){
+		for(Edge edge: mst){
 			System.out.println(edge.getStartVertex() + " " + edge.getTargetVertex() + " -- ");
 		}
 		
