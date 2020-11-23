@@ -31,11 +31,11 @@ public class Algorithm {
 				
 			}
 			
-			Edge e = this.edgeHeap.remove() ;
-			this.spanningTree.add(e) ;
-			this.fullCost += e.getWeight() ;
+			Edge minEdge = this.edgeHeap.remove() ;
+			this.spanningTree.add(minEdge) ;
+			this.fullCost += minEdge.getWeight() ;
 			
-			vertex = e.getTargetVertex() ;
+			vertex = minEdge.getTargetVertex() ;
 			this.unviustedVertices.remove(vertex) ;
 			
 		}
