@@ -2,15 +2,14 @@ package Practice.Graph.Kruskal;
 
 public class Edge implements Comparable<Edge> {
 
-	
-private double weight ;
-	
-	private Vertex startVertex ;
-	
-	private Vertex targetVertex ;
+	private double weight;
 
-	public Edge(double weight, Vertex startVertex,
-			Vertex targetVertex) {
+	private Vertex startVertex;
+
+	private Vertex targetVertex;
+
+	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
+		super();
 		this.weight = weight;
 		this.startVertex = startVertex;
 		this.targetVertex = targetVertex;
@@ -39,8 +38,10 @@ private double weight ;
 	public void setTargetVertex(Vertex targetVertex) {
 		this.targetVertex = targetVertex;
 	}
+
 	@Override
-	public int compareTo(Edge edge){
-		return Double.compare(this.weight, edge.getWeight()) ;
+	public int compareTo(Edge edge) {
+		return Double.compare(this.weight, edge.getWeight());
 	}
+
 }
