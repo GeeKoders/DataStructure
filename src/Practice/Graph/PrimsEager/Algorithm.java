@@ -21,9 +21,7 @@ public class Algorithm {
 			if(!vertex.isVisited()){
 				greedyPrim(vertex) ;
 			}
-			
 		}
-		
 	}
 
 	private void greedyPrim(Vertex vertex) {
@@ -43,8 +41,34 @@ public class Algorithm {
 		vertex.setVisited(true);
 		
 		for(Edge edge: vertex.getAdjacencies()){
+			Vertex w = edge.getTargetVertex() ;
+			
+			if(w.isVisited()) continue ;
+			
+			if(edge.getWeight()<w.getMinDistance()){
+				w.setMinDistance(edge.getWeight());
+				w.setMinEdge(edge);
+				
+				if(this.heap.contains(w)){
+					this.heap.remove(w) ;
+				}
+				
+				this.heap.add(w) ;
+			}
+		}
+	}
+	
+	public void show(){
+		
+		for(Vertex vertex: vertexList){
+			
+			if(vertex.getMinEdge()!=null){
+				Edge e = vertex.getMinEdge() ;
+				System.out.println("Edge: " + e.getStartVertex() + "-" + e.getTargetVertex());
+			}
 			
 		}
+		
 		
 	}
 	
