@@ -1,5 +1,6 @@
 package Practice.Graph.PrimsEager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex implements Comparable<Vertex> {
@@ -10,6 +11,12 @@ public class Vertex implements Comparable<Vertex> {
 	private Vertex previousVertex ;
 	private double minDistance = Double.MAX_VALUE ;
 	private List<Edge> adjacencies ;
+	
+	public Vertex(String name){
+		this.name = name ;
+		this.adjacencies = new ArrayList<>() ;
+	}
+	
 	public String getName() {
 		return name;
 	}
