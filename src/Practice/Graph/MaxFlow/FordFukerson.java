@@ -3,14 +3,14 @@ package Practice.Graph.MaxFlow;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class FoldFukerson {
+public class FordFukerson {
 
 	private boolean[] marked; // marked[v.getId()] = true s -> v in the residual
 								// graph
 	private Edge[] edgeTo; // edgeTo[v] = edges in the augmenting path
 	private double valueMaxFlow;
 
-	public FoldFukerson(FlowNetwork flowNetwork, Vertex s, Vertex t) {
+	public FordFukerson(FlowNetwork flowNetwork, Vertex s, Vertex t) {
 
 		while (hasAugmentingPath(flowNetwork, s, t)) {
 
