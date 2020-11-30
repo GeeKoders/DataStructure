@@ -73,7 +73,7 @@ public class SingleTour {
 		
 	}
 
-	private void setCity(int cityIndex, City city) {
+	public void setCity(int cityIndex, City city) {
 		this.tour.set(cityIndex, city) ;
 		this.distance = 0 ;
 	}
