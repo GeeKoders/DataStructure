@@ -48,6 +48,10 @@ public class SimulatedAnnealing {
 		}
 		
 	}
+	
+	public SingleTour getBest(){
+		return best ;
+	}
 
 	private double acceptanceProbability(double currentEnergy,
 			double neighbourEnergy, double temperature) {
