@@ -9,6 +9,7 @@ public class FibonacciNumber {
 		System.out.println(fibonacciNumber.solve2(6)); 
 		System.out.println(fibonacciNumber.solve3(6));
 		System.out.println(fibonacciNumber.solve4(6));
+		System.out.println(fibonacciNumber.solve5(6, 0, 1));
 		
 	}
 	
@@ -52,6 +53,15 @@ public class FibonacciNumber {
 		
 		return result ;
 		
+		
+	}
+	
+	public int solve5(int n, int a, int b){
+		
+		if(n == 0) return a ;
+		if(n == 1) return b ;
+		
+		return solve5(n-1, b, a+b) ;
 		
 	}
 	
