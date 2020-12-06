@@ -7,7 +7,8 @@ public class FibonacciNumber {
 		FibonacciNumber fibonacciNumber = new FibonacciNumber() ;
 		System.out.println(fibonacciNumber.solve1(6)); 
 		System.out.println(fibonacciNumber.solve2(6)); 
-		System.out.println(fibonacciNumber.solve3(6)); 
+		System.out.println(fibonacciNumber.solve3(6));
+		System.out.println(fibonacciNumber.solve4(6));
 		
 	}
 	
@@ -37,6 +38,20 @@ public class FibonacciNumber {
 		int result = res + solve1(n-1) ;
 		
 		return result ;
+		
+	}
+	
+	public int solve4(int n){
+		
+		if(n==0) return 0 ;
+		if(n==1) return 1 ;
+		
+		int fib1 = solve4(n-1) ;
+		int fib2 = solve4(n-2) ;
+		int result = fib1 + fib2 ;
+		
+		return result ;
+		
 		
 	}
 	
