@@ -43,7 +43,7 @@ public class KnightTour {
 
 	private boolean solve(int stepCount, int x, int y) {
 
-		if(stepCount == boardSize * boardSize + 1){
+		if(stepCount == boardSize * boardSize){
 			return true ;
 		}
 		
