@@ -5,9 +5,9 @@ public class Palindrome {
 	
 	public static void main(String[] args) {
 		
-		System.out.println(palindrome1("holloh"));
-		System.out.println(palindrome2("holloh"));
-		
+		System.out.println(palindrome1("olloh"));
+		System.out.println(palindrome2("olloh"));
+		System.out.println(palindrome3("olloh"));
 	}
 
 	public static boolean palindrome1(String s){
@@ -46,6 +46,28 @@ public class Palindrome {
 		
 		return true ;
 		
+	}
+	
+	public static boolean palindrome3(String s){
+		
+		
+		int i = 0 ;
+		int j = s.length() - 1 ;
+		int k = (i+j)/2 ;
+		
+		while(i<=k){
+			
+			if(s.charAt(i) != s.charAt(j)){
+				return false ;
+			}else{
+				i++ ; 
+				j-- ;
+			}
+			
+			
+		}
+		
+		return true ;
 	}
 	
 }
