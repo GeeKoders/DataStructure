@@ -5,12 +5,12 @@ public class Palindrome {
 	
 	public static void main(String[] args) {
 		
-		System.out.println(palidnrome1("ollo"));
-		
+		System.out.println(palindrome1("holloh"));
+		System.out.println(palindrome2("holloh"));
 		
 	}
 
-	public static boolean palidnrome1(String s){
+	public static boolean palindrome1(String s){
 		
 		String reversed = "" ;
 		
@@ -27,5 +27,25 @@ public class Palindrome {
 		
 	}
 	
+	public static boolean palindrome2(String s){
+		
+		int i = 0 ;
+		int j = s.length() - 1 ;
+		int k = (i+j)/2 ;
+		
+		for(int index =i ; index <=k; index ++){
+			
+			if(s.charAt(i) == s.charAt(j)){
+				i++ ;
+				j-- ;
+			}else{
+				return false ;
+			}
+			
+		}
+		
+		return true ;
+		
+	}
 	
 }
