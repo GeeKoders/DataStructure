@@ -1,0 +1,56 @@
+package Practice.CommonInterview;
+
+
+public class EggDroppingProblem {
+
+	public static void main(String[] args) {
+		EggDroppingProblem eggDroppingProblem = new EggDroppingProblem() ;
+		System.out.println("Minimum number of drops to find the critical floor: " + eggDroppingProblem.solve());
+	}
+	
+	public static final int NUM_OF_EGGS = 2 ;
+	public static final int NUM_OF_FLOORS = 100 ;
+	
+	//dynamic programming table to store the values for the subproblems
+	//dpTable[i][j] represents the minimum number of drops with i eggs and j floors
+	private int[][] dpTable = new int[NUM_OF_EGGS+1][NUM_OF_FLOORS+1] ;
+	
+	public int solve(){
+		
+		//the first column is initialized with 1s:
+		//first columd values are 1 
+		dpTable[0][0] = 1 ;
+		dpTable[1][0] = 1 ;
+		
+		//linear search basically
+		for(int i=0; i<=NUM_OF_FLOORS; i++){
+			dpTable[1][i] = i ;
+		}
+		
+		//n is the index for the eggs - m is the index for the floors 
+		for(int n=2; n<=NUM_OF_EGGS; n++){
+			for(int m=1; m<=NUM_OF_FLOORS; m++){
+				dpTable[n][m] = Integer.MAX_VALUE ;
+				
+				//check dropping the egg from 1 to the current floor j
+				//NOTE: WE CAN REUSE THE SUBSOLUTIONS FROM THE TABLE !!!
+				for(int x=1; x<=m; x++){
+					//we have to use the formula we have already discussed + use max because of worst-case scenario
+					//don't forget to add ine to include the current drop
+					int maxDrops = 1 + Math.max(dpTable[n-1][x-1], dpTable[n][m-x]) ;
+							
+							//this is taking the minimum (because we are after the minimum number of drops)
+					if(maxDrops < dpTable[n][m]){
+						dpTable[n][m] = maxDrops ;
+					}
+					
+				}
+				
+				
+			}
+		}
+		//the last itme in the table contains the minimum number of drops
+		return dpTable[NUM_OF_EGGS][NUM_OF_FLOORS] ;
+	}
+	
+}
